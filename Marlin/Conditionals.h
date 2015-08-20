@@ -44,6 +44,13 @@
   #if ENABLED(U8GLIB_SSD1306)
     #define ULTRA_LCD  //general LCD support, also 16x2
     #define DOGLCD  // Support for I2C LCD 128x64 (Controller SSD1306 graphic Display Family)
+    #define ULTIMAKERCONTROLLER
+  #endif
+  // Generic support for SH1106 OLED based LCDs.
+  #if ENABLED(U8GLIB_SH1106)
+    #define ULTRA_LCD  //general LCD support, also 16x2
+    #define DOGLCD  // Support for I2C LCD 128x64 (Controller SSD1306 graphic Display Family)
+    #define ULTIMAKERCONTROLLER
   #endif
 
 
@@ -198,18 +205,19 @@
   /**
    * Default LCD contrast for dogm-like LCD displays
    */
-  #if ENABLED(DOGLCD) && DISABLED(DEFAULT_LCD_CONTRAST)
-    #define DEFAULT_LCD_CONTRAST 32
+  #if ENABLED(DOGLCD)
+    #define HAS_LCD_CONTRAST (DISABLED(U8GLIB_ST7920) && DISABLED(U8GLIB_SSD1306) && DISABLED(U8GLIB_SH1106))
+    #if HAS_LCD_CONTRAST && !defined(DEFAULT_LCD_CONTRAST)
+      #define DEFAULT_LCD_CONTRAST 32
+    #endif
   #endif
 
   #if ENABLED(DOGLCD)
-    #define HAS_LCD_CONTRAST
-    #if ENABLED(U8GLIB_ST7920)
-      #undef HAS_LCD_CONTRAST
+    #if ENABLED(U8GLIB_ST7920) || ENABLED(U8GLIB_SSD1306) || ENABLED(U8GLIB_SH1106)
+      #define HAS_LCD_CONTRAST false
+    #else
+      #define HAS_LCD_CONTRAST true
     #endif
-    #if ENABLED(U8GLIB_SSD1306)
-      #undef HAS_LCD_CONTRAST
-    #endif  
   #endif
 
 #else // CONFIGURATION_LCD
