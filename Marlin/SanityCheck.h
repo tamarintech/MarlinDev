@@ -32,8 +32,8 @@
    * Babystepping
    */
   #if ENABLED(BABYSTEPPING)
-    #if ENABLED(COREXY)
-      #error BABYSTEPPING not implemented for COREXY yet.
+    #if ENABLED(COREXY) && ENABLED(BABYSTEP_XY)
+      #error BABYSTEPPING only implemented for Z axis on CoreXY.
     #endif
     #if ENABLED(SCARA)
       #error BABYSTEPPING is not implemented for SCARA yet.
@@ -130,40 +130,40 @@
   #if ENABLED(ENABLE_AUTO_BED_LEVELING)
 
     /**
-     * Require a Z Min pin
+     * Require a Z min pin
      */
-    #if Z_MIN_PIN == -1
-      #if Z_PROBE_PIN == -1 || (DISABLED(Z_PROBE_ENDSTOP) || ENABLED(DISABLE_Z_PROBE_ENDSTOP)) // It's possible for someone to set a pin for the Z Probe, but not enable it.
-        #if ENABLED(Z_PROBE_REPEATABILITY_TEST)
-          #error You must have a Z_MIN or Z_PROBE endstop to enable Z_PROBE_REPEATABILITY_TEST.
+    #if !PIN_EXISTS(Z_MIN)
+      #if !PIN_EXISTS(Z_MIN_PROBE) || (DISABLED(Z_MIN_PROBE_ENDSTOP) || ENABLED(DISABLE_Z_MIN_PROBE_ENDSTOP)) // It's possible for someone to set a pin for the Z probe, but not enable it.
+        #if ENABLED(Z_MIN_PROBE_REPEATABILITY_TEST)
+          #error You must have a Z min or Z probe endstop to enable Z_MIN_PROBE_REPEATABILITY_TEST.
         #else
-          #error ENABLE_AUTO_BED_LEVELING requires a Z_MIN or Z_PROBE endstop. Z_MIN_PIN or Z_PROBE_PIN must point to a valid hardware pin.
+          #error ENABLE_AUTO_BED_LEVELING requires a Z min or Z probe endstop. Z_MIN_PIN or Z_MIN_PROBE_PIN must point to a valid hardware pin.
         #endif
       #endif
     #endif
 
     /**
-     * Require a Z Probe Pin if Z_PROBE_ENDSTOP is enabled.
+     * Require a Z probe pin if Z_MIN_PROBE_ENDSTOP is enabled.
      */
-    #if ENABLED(Z_PROBE_ENDSTOP)
-      #if !PIN_EXISTS(Z_PROBE)
-        #error You must have a Z_PROBE_PIN defined in your pins_XXXX.h file if you enable Z_PROBE_ENDSTOP.
+    #if ENABLED(Z_MIN_PROBE_ENDSTOP)
+      #ifndef Z_MIN_PROBE_PIN
+        #error You must have a Z_MIN_PROBE_PIN defined in your pins_XXXX.h file if you enable Z_MIN_PROBE_ENDSTOP.
       #endif
-      #if Z_PROBE_PIN == -1
-        #error You must set Z_PROBE_PIN to a valid pin if you enable Z_PROBE_ENDSTOP.
+      #if !PIN_EXISTS(Z_MIN_PROBE)
+        #error You must set Z_MIN_PROBE_PIN to a valid pin if you enable Z_MIN_PROBE_ENDSTOP.
       #endif
 // Forcing Servo definitions can break some hall effect sensor setups. Leaving these here for further comment.
 //      #ifndef NUM_SERVOS
-//        #error You must have NUM_SERVOS defined and there must be at least 1 configured to use Z_PROBE_ENDSTOP.
+//        #error You must have NUM_SERVOS defined and there must be at least 1 configured to use Z_MIN_PROBE_ENDSTOP.
 //      #endif
 //      #if defined(NUM_SERVOS) && NUM_SERVOS < 1
-//        #error You must have at least 1 servo defined for NUM_SERVOS to use Z_PROBE_ENDSTOP.
+//        #error You must have at least 1 servo defined for NUM_SERVOS to use Z_MIN_PROBE_ENDSTOP.
 //      #endif
 //      #if Z_ENDSTOP_SERVO_NR < 0
-//        #error You must have Z_ENDSTOP_SERVO_NR set to at least 0 or above to use Z_PROBE_ENDSTOP.
+//        #error You must have Z_ENDSTOP_SERVO_NR set to at least 0 or above to use Z_MIN_PROBE_ENDSTOP.
 //      #endif
 //      #ifndef SERVO_ENDSTOP_ANGLES
-//        #error You must have SERVO_ENDSTOP_ANGLES defined for Z Extend and Retract to use Z_PROBE_ENDSTOP.
+//        #error You must have SERVO_ENDSTOP_ANGLES defined for Z Extend and Retract to use Z_MIN_PROBE_ENDSTOP.
 //      #endif
     #endif
     /**
@@ -179,30 +179,30 @@
         #endif
         // Make sure probing points are reachable
         #if LEFT_PROBE_BED_POSITION < MIN_PROBE_X
-          #error "The given LEFT_PROBE_BED_POSITION can't be reached by the probe."
+          #error "The given LEFT_PROBE_BED_POSITION can't be reached by the Z probe."
         #elif RIGHT_PROBE_BED_POSITION > MAX_PROBE_X
-          #error "The given RIGHT_PROBE_BED_POSITION can't be reached by the probe."
+          #error "The given RIGHT_PROBE_BED_POSITION can't be reached by the Z probe."
         #elif FRONT_PROBE_BED_POSITION < MIN_PROBE_Y
-          #error "The given FRONT_PROBE_BED_POSITION can't be reached by the probe."
+          #error "The given FRONT_PROBE_BED_POSITION can't be reached by the Z probe."
         #elif BACK_PROBE_BED_POSITION > MAX_PROBE_Y
-          #error "The given BACK_PROBE_BED_POSITION can't be reached by the probe."
+          #error "The given BACK_PROBE_BED_POSITION can't be reached by the Z probe."
         #endif
       #endif
     #else // !AUTO_BED_LEVELING_GRID
 
       // Check the triangulation points
       #if ABL_PROBE_PT_1_X < MIN_PROBE_X || ABL_PROBE_PT_1_X > MAX_PROBE_X
-        #error "The given ABL_PROBE_PT_1_X can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_1_X can't be reached by the Z probe."
       #elif ABL_PROBE_PT_2_X < MIN_PROBE_X || ABL_PROBE_PT_2_X > MAX_PROBE_X
-        #error "The given ABL_PROBE_PT_2_X can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_2_X can't be reached by the Z probe."
       #elif ABL_PROBE_PT_3_X < MIN_PROBE_X || ABL_PROBE_PT_3_X > MAX_PROBE_X
-        #error "The given ABL_PROBE_PT_3_X can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_3_X can't be reached by the Z probe."
       #elif ABL_PROBE_PT_1_Y < MIN_PROBE_Y || ABL_PROBE_PT_1_Y > MAX_PROBE_Y
-        #error "The given ABL_PROBE_PT_1_Y can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_1_Y can't be reached by the Z probe."
       #elif ABL_PROBE_PT_2_Y < MIN_PROBE_Y || ABL_PROBE_PT_2_Y > MAX_PROBE_Y
-        #error "The given ABL_PROBE_PT_2_Y can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_2_Y can't be reached by the Z probe."
       #elif ABL_PROBE_PT_3_Y < MIN_PROBE_Y || ABL_PROBE_PT_3_Y > MAX_PROBE_Y
-        #error "The given ABL_PROBE_PT_3_Y can't be reached by the probe."
+        #error "The given ABL_PROBE_PT_3_Y can't be reached by the Z probe."
       #endif
 
     #endif // !AUTO_BED_LEVELING_GRID
@@ -231,8 +231,8 @@
         #error You cannot use Z_PROBE_SLED with DELTA.
       #endif
 
-      #if ENABLED(Z_PROBE_REPEATABILITY_TEST)
-        #error Z_PROBE_REPEATABILITY_TEST is not supported with DELTA yet.
+      #if ENABLED(Z_MIN_PROBE_REPEATABILITY_TEST)
+        #error Z_MIN_PROBE_REPEATABILITY_TEST is not supported with DELTA yet.
       #endif
 
     #endif
@@ -240,7 +240,7 @@
   #endif
 
   /**
-   * Allen Key Z Probe requires Auto Bed Leveling grid and Delta
+   * Allen Key Z probe requires Auto Bed Leveling grid and Delta
    */
   #if ENABLED(Z_PROBE_ALLEN_KEY) && !(ENABLED(AUTO_BED_LEVELING_GRID) && ENABLED(DELTA))
     #error Invalid use of Z_PROBE_ALLEN_KEY.
