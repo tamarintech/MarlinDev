@@ -4,6 +4,7 @@
 ##############################################################
 
 menu.cpu=Processor
+menu.bootloaders=Bootloader
 menu.marlin=Printers
 
 ########################################
@@ -174,6 +175,11 @@ BrainwavePro.build.pid=0x076B
 BrainwavePro.build.unique_id_flags=
 BrainwavePro.build.extra_flags=-DAT90USBxx_TEENSYPP_ASSIGNMENTS -DUSB_VID={build.vid} -DUSB_PID={build.pid} {build.unique_id_flags}
 
+BrainwavePro.menu.bootloaders.hid=HID
+BrainwavePro.menu.bootloaders.hid.bootloader.file=at90usb/BootloaderHID.hex
+BrainwavePro.menu.bootloaders.cdc=CDC
+BrainwavePro.menu.bootloaders.cdc.bootloader.file=at90usb/BrainwavePro-1286-LUFA.hex
+
 BrainwavePro.menu.marlin.e9cbe275=Printer e9cbe275
 BrainwavePro.menu.marlin.e9cbe275.build.unique_id_flags=-DSPECIFIC_PRINTER_ID=e9cbe275
 BrainwavePro.menu.marlin.kossel_pro=A Kossel Pro
@@ -191,8 +197,7 @@ SAVMkI.bootloader.high_fuses=0xDB
 SAVMkI.bootloader.extended_fuses=0xF1
 SAVMkI.bootloader.unlock_bits=0x3F
 SAVMkI.bootloader.lock_bits=0x02F
-SAVMkI.bootloader.path=SAVMkI
-SAVMkI.bootloader.file=SAVMkI-1286-LUFA.hex
+SAVMkI.bootloader.file=SAVMkI/SAVMkI-1286-LUFA.hex
 
 SAVMkI.upload.tool=avrdude
 SAVMkI.upload.protocol=avr109
@@ -221,8 +226,7 @@ SAVMkI_HID.bootloader.high_fuses=0xDB
 SAVMkI_HID.bootloader.extended_fuses=0xF1
 SAVMkI_HID.bootloader.unlock_bits=0x3F
 SAVMkI_HID.bootloader.lock_bits=0x02F
-SAVMkI_HID.bootloader.path=SAVMkI
-SAVMkI_HID.bootloader.file=SAVMkI_HID.hex
+SAVMkI_HID.bootloader.file=SAVMkI/SAVMkI_HID.hex
 
 SAVMkI_HID.upload.tool=hidloader
 SAVMkI_HID.upload.protocol=halfkay
