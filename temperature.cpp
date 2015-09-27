@@ -207,7 +207,7 @@ void PID_autotune(float temp, int extruder, int ncycles) {
 
   long bias, d;
   float Ku, Tu;
-  float Kp, Ki, Kd;
+  float Kp = 0, Ki = 0, Kd = 0;
   float max = 0, min = 10000;
 
   #if HAS_AUTO_FAN
@@ -795,7 +795,7 @@ static float analog2tempBed(int raw) {
     return ((raw * ((5.0 * 100.0) / 1024.0) / OVERSAMPLENR) * TEMP_SENSOR_AD595_GAIN) + TEMP_SENSOR_AD595_OFFSET;
 
   #else
-
+    UNUSED(raw);
     return 0;
 
   #endif
