@@ -4,6 +4,7 @@
 ##############################################################
 
 menu.cpu=Processor
+menu.marlin=Printers
 
 ########################################
 ## Arduino Mega or Mega 2560
@@ -65,6 +66,52 @@ mega.menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
 mega.menu.cpu.atmega1280.build.mcu=atmega1280
 mega.menu.cpu.atmega1280.build.board=AVR_MEGA
 
+mega.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_01.h
+mega.menu.marlin.travis01=Default Configuration
+mega.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_02.h
+mega.menu.marlin.travis02=Bed Sensor
+mega.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_03.h
+mega.menu.marlin.travis03=2 Extruders
+mega.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_04.h
+mega.menu.marlin.travis04=3 Extruders
+mega.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_05.h
+mega.menu.marlin.travis05=Bed PID
+mega.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_06.h
+mega.menu.marlin.travis06=Bed Leveling
+mega.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_07.h
+mega.menu.marlin.travis07=Bed Leveling with servos
+mega.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_08.h
+mega.menu.marlin.travis08=EEPROM Config Store
+mega.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_09.h
+mega.menu.marlin.travis09=Ultimaker Controller
+mega.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_11.h
+mega.menu.marlin.travis11=Reprap Discount Controller
+mega.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_12.h
+mega.menu.marlin.travis12=G3D_PANE
+mega.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_13.h
+mega.menu.marlin.travis13=Reprap Full Graphic
+mega.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_15.h
+mega.menu.marlin.travis15=RA Control Panel
+mega.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_17.h
+mega.menu.marlin.travis17=OLU2 Control Panel
+mega.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_18.h
+mega.menu.marlin.travis18=VIKI Display
+mega.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_19.h
+mega.menu.marlin.travis19=Filament Sensor
+mega.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_20.h
+mega.menu.marlin.travis20=Filament Sensor w/ display
+mega.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_21.h
+mega.menu.marlin.travis21=CORE XY
+mega.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_22.h
+mega.menu.marlin.travis22=CORE XZ
+mega.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_23.h
+mega.menu.marlin.travis23=Dual Z
+mega.menu.marlin.travis24.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/generic/Configuration.h
+mega.menu.marlin.travis24=DELTA
+mega.menu.marlin.travis25.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/kossel_mini/Configuration.h
+mega.menu.marlin.travis25=Mini Kossel
+mega.menu.marlin.travis26.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/SCARA/Configuration.h
+mega.menu.marlin.travis26=SCARA
 
 ########################################
 ## Brainwave
@@ -124,8 +171,14 @@ BrainwavePro.build.dependency=true
 BrainwavePro.build.variant=at90usb
 BrainwavePro.build.vid=0x16D0
 BrainwavePro.build.pid=0x076B
-BrainwavePro.build.extra_flags=-DAT90USBxx_TEENSYPP_ASSIGNMENTS -DUSB_VID={build.vid} -DUSB_PID={build.pid}
+BrainwavePro.build.unique_id_flags=
+BrainwavePro.build.extra_flags=-DAT90USBxx_TEENSYPP_ASSIGNMENTS -DUSB_VID={build.vid} -DUSB_PID={build.pid} {build.unique_id_flags}
 
+BrainwavePro.menu.marlin.e9cbe275=Printer e9cbe275
+BrainwavePro.menu.marlin.e9cbe275.build.unique_id_flags=-DSPECIFIC_PRINTER_ID=e9cbe275
+BrainwavePro.menu.marlin.kossel_pro=A Kossel Pro
+BrainwavePro.menu.marlin.kossel_pro.build.unique_id_flags=-DSPECIFIC_PRINTER_ID=my_kossel_pro
+BrainwavePro.menu.marlin.generic=generic
 
 ########################################
 ## SAVMkI (CDC)
