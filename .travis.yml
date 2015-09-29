@@ -1,0 +1,5 @@
+---
+language: c
+
+script:
+  - echo "Not Actually Testing This"

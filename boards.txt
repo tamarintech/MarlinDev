@@ -1,0 +1,246 @@
+# See: https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5---3rd-party-Hardware-specification
+# See: http://code.google.com/p/arduino/wiki/Platforms
+
+##############################################################
+
+menu.cpu=Processor
+menu.bootloaders=Bootloader
+menu.marlin=Printers
+
+########################################
+## Arduino Mega or Mega 2560
+########################################
+
+mega.name=Arduino Mega or Mega 2560
+
+mega.vid.0=0x2341
+mega.pid.0=0x0010
+mega.vid.1=0x2341
+mega.pid.1=0x0042
+mega.vid.2=0x2A03
+mega.pid.2=0x0010
+mega.vid.3=0x2A03
+mega.pid.3=0x0042
+
+mega.upload.tool=avrdude
+mega.upload.maximum_data_size=8192
+
+mega.bootloader.tool=avrdude
+mega.bootloader.low_fuses=0xFF
+mega.bootloader.unlock_bits=0x3F
+mega.bootloader.lock_bits=0x0F
+
+mega.build.f_cpu=16000000L
+mega.build.core=arduino
+mega.build.variant=mega
+# default board  may be overridden by the cpu menu
+mega.build.board=AVR_MEGA2560
+mega.build.mcu=atmega2560
+
+## Arduino Mega w/ ATmega2560
+## -------------------------
+mega.menu.cpu.atmega2560=ATmega2560 (Mega 2560)
+
+mega.menu.cpu.atmega2560.upload.protocol=wiring
+mega.menu.cpu.atmega2560.upload.maximum_size=253952
+mega.menu.cpu.atmega2560.upload.speed=115200
+
+mega.menu.cpu.atmega2560.bootloader.high_fuses=0xD8
+mega.menu.cpu.atmega2560.bootloader.extended_fuses=0xFD
+mega.menu.cpu.atmega2560.bootloader.file=stk500v2/stk500boot_v2_mega2560.hex
+
+mega.menu.cpu.atmega2560.build.mcu=atmega2560
+mega.menu.cpu.atmega2560.build.board=AVR_MEGA2560
+
+## Arduino Mega w/ ATmega1280
+## -------------------------
+mega.menu.cpu.atmega1280=ATmega1280
+
+mega.menu.cpu.atmega1280.upload.protocol=arduino
+mega.menu.cpu.atmega1280.upload.maximum_size=126976
+mega.menu.cpu.atmega1280.upload.speed=57600
+
+mega.menu.cpu.atmega1280.bootloader.high_fuses=0xDA
+mega.menu.cpu.atmega1280.bootloader.extended_fuses=0xF5
+mega.menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
+
+mega.menu.cpu.atmega1280.build.mcu=atmega1280
+mega.menu.cpu.atmega1280.build.board=AVR_MEGA
+
+mega.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_01.h
+mega.menu.marlin.travis01=Default Configuration
+mega.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_02.h
+mega.menu.marlin.travis02=Bed Sensor
+mega.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_03.h
+mega.menu.marlin.travis03=2 Extruders
+mega.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_04.h
+mega.menu.marlin.travis04=3 Extruders
+mega.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_05.h
+mega.menu.marlin.travis05=Bed PID
+mega.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_06.h
+mega.menu.marlin.travis06=Bed Leveling
+mega.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_07.h
+mega.menu.marlin.travis07=Bed Leveling with servos
+mega.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_08.h
+mega.menu.marlin.travis08=EEPROM Config Store
+mega.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_09.h
+mega.menu.marlin.travis09=Ultimaker Controller
+mega.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_11.h
+mega.menu.marlin.travis11=Reprap Discount Controller
+mega.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_12.h
+mega.menu.marlin.travis12=G3D_PANE
+mega.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_13.h
+mega.menu.marlin.travis13=Reprap Full Graphic
+mega.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_15.h
+mega.menu.marlin.travis15=RA Control Panel
+mega.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_17.h
+mega.menu.marlin.travis17=OLU2 Control Panel
+mega.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_18.h
+mega.menu.marlin.travis18=VIKI Display
+mega.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_19.h
+mega.menu.marlin.travis19=Filament Sensor
+mega.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_20.h
+mega.menu.marlin.travis20=Filament Sensor w/ display
+mega.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_21.h
+mega.menu.marlin.travis21=CORE XY
+mega.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_22.h
+mega.menu.marlin.travis22=CORE XZ
+mega.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_23.h
+mega.menu.marlin.travis23=Dual Z
+mega.menu.marlin.travis24.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/generic/Configuration.h
+mega.menu.marlin.travis24=DELTA
+mega.menu.marlin.travis25.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/kossel_mini/Configuration.h
+mega.menu.marlin.travis25=Mini Kossel
+mega.menu.marlin.travis26.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/SCARA/Configuration.h
+mega.menu.marlin.travis26=SCARA
+
+########################################
+## Brainwave
+########################################
+Brainwave.name=AT90-USB-64
+
+Brainwave.bootloader.tool=avrdude
+Brainwave.bootloader.low_fuses=0xFF
+Brainwave.bootloader.high_fuses=0x99
+Brainwave.bootloader.extended_fuses=0xF0
+Brainwave.bootloader.unlock_bits=0x3F
+Brainwave.bootloader.lock_bits=0x02F
+Brainwave.bootloader.path=brainwave
+Brainwave.bootloader.file=Brainwave-646-LUFA.hex
+
+Brainwave.upload.tool=avrdude
+Brainwave.upload.protocol=avr109
+Brainwave.upload.maximum_size=61440
+Brainwave.upload.speed=115200
+Brainwave.upload.disable_flushing=true
+
+Brainwave.build.mcu=at90usb646
+Brainwave.build.f_cpu=16000000L
+Brainwave.build.board=AVR_BRAINWAVE
+Brainwave.build.core=at90usb
+Brainwave.build.dependency=true
+Brainwave.build.variant=brainwave
+Brainwave.build.vid=0x16D0
+Brainwave.build.pid=0x076B
+
+########################################
+## BrainwavePro (CDC)
+########################################
+BrainwavePro.name=AT90-USB-128
+
+BrainwavePro.bootloader.tool=avrdude
+BrainwavePro.bootloader.low_fuses=0xFF
+BrainwavePro.bootloader.high_fuses=0x9B
+BrainwavePro.bootloader.extended_fuses=0xF0
+BrainwavePro.bootloader.unlock_bits=0x3F
+BrainwavePro.bootloader.lock_bits=0x02F
+
+BrainwavePro.upload.maximum_size=126976
+BrainwavePro.upload.speed=115200
+BrainwavePro.upload.disable_flushing=true
+BrainwavePro.menu.bootloaders.hid.upload.tool=hidloader
+BrainwavePro.menu.bootloaders.hid.upload.protocol=halfkay
+BrainwavePro.menu.bootloaders.hid.upload.maximum_data_size=8192
+BrainwavePro.menu.bootloaders.cdc.upload.tool=avrdude
+BrainwavePro.menu.bootloaders.cdc.upload.protocol=avr109
+
+BrainwavePro.build.mcu=at90usb1286
+BrainwavePro.build.f_cpu=16000000L
+BrainwavePro.build.board=AVR_BRAINWAVEPRO
+BrainwavePro.build.core=at90usb
+BrainwavePro.build.dependency=true
+BrainwavePro.build.variant=at90usb
+BrainwavePro.build.vid=0x16D0
+BrainwavePro.build.pid=0x076B
+BrainwavePro.build.unique_id_flags=
+BrainwavePro.build.extra_flags=-DAT90USBxx_TEENSYPP_ASSIGNMENTS -DUSB_VID={build.vid} -DUSB_PID={build.pid} {build.unique_id_flags}
+
+BrainwavePro.menu.bootloaders.hid=HID
+BrainwavePro.menu.bootloaders.hid.bootloader.file=at90usb/BootloaderHID.hex
+BrainwavePro.menu.bootloaders.cdc=CDC
+BrainwavePro.menu.bootloaders.cdc.bootloader.file=at90usb/BrainwavePro-1286-LUFA.hex
+
+BrainwavePro.menu.marlin.e9cbe275=Printer e9cbe275
+BrainwavePro.menu.marlin.e9cbe275.build.unique_id_flags=-DSPECIFIC_PRINTER_ID=e9cbe275
+BrainwavePro.menu.marlin.kossel_pro=A Kossel Pro
+BrainwavePro.menu.marlin.kossel_pro.build.unique_id_flags=-DSPECIFIC_PRINTER_ID=my_kossel_pro
+BrainwavePro.menu.marlin.generic=generic
+
+########################################
+## SAVMkI (CDC)
+########################################
+SAVMkI.name=SAV MkI (CDC)
+
+SAVMkI.bootloader.tool=avrdude
+SAVMkI.bootloader.low_fuses=0xDE
+SAVMkI.bootloader.high_fuses=0xDB
+SAVMkI.bootloader.extended_fuses=0xF1
+SAVMkI.bootloader.unlock_bits=0x3F
+SAVMkI.bootloader.lock_bits=0x02F
+SAVMkI.bootloader.file=SAVMkI/SAVMkI-1286-LUFA.hex
+
+SAVMkI.upload.tool=avrdude
+SAVMkI.upload.protocol=avr109
+SAVMkI.upload.maximum_size=126976
+SAVMkI.upload.speed=115200
+SAVMkI.upload.disable_flushing=true
+
+SAVMkI.build.mcu=at90usb1286
+SAVMkI.build.f_cpu=16000000L
+SAVMkI.build.board=AVR_SAVMkI
+SAVMkI.build.core=at90usb
+SAVMkI.build.dependency=true
+SAVMkI.build.variant=at90usb
+SAVMkI.build.vid=0x16D0
+SAVMkI.build.pid=0x076B
+SAVMkI.build.extra_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid}
+
+########################################
+## SAVMkI (HID)
+########################################
+SAVMkI_HID.name=SAV MkI (HID Bootloader)
+
+SAVMkI_HID.bootloader.tool=avrdude
+SAVMkI_HID.bootloader.low_fuses=0xDE
+SAVMkI_HID.bootloader.high_fuses=0xDB
+SAVMkI_HID.bootloader.extended_fuses=0xF1
+SAVMkI_HID.bootloader.unlock_bits=0x3F
+SAVMkI_HID.bootloader.lock_bits=0x02F
+SAVMkI_HID.bootloader.file=SAVMkI/SAVMkI_HID.hex
+
+SAVMkI_HID.upload.tool=hidloader
+SAVMkI_HID.upload.protocol=halfkay
+SAVMkI_HID.upload.maximum_size=126976
+SAVMkI_HID.upload.maximum_ram_size=8192
+SAVMkI_HID.upload.speed=115200
+SAVMkI_HID.upload.disable_flushing=true
+
+SAVMkI_HID.build.mcu=at90usb1286
+SAVMkI_HID.build.f_cpu=16000000L
+SAVMkI_HID.build.board=AVR_SAVMkI
+SAVMkI_HID.build.core=at90usb
+SAVMkI_HID.build.dependency=true
+SAVMkI_HID.build.variant=at90usb
+SAVMkI_HID.build.vid=0x16D0
+SAVMkI_HID.build.pid=0x076B
+SAVMkI_HID.build.extra_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid}

@@ -1,0 +1,4 @@
+[submodule "hardware/marlin/avr/libraries/marlin"]
+	path = hardware/marlin/avr/libraries/marlin
+	url = ./
+	branch = dev
