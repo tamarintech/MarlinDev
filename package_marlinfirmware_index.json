@@ -1,0 +1,46 @@
+{
+  "packages": [
+    {
+      "name": "Marlin",
+      "email": "rkw@dataplex.net",
+      "help": {
+        "online": "https://github.com/MarlinFirmware/Marlin/wiki"
+      },
+      "maintainer": "Richard Wackerbarth",
+      "platforms": [
+        {
+          "name": "Marlin",
+          "version": "1.0.0",
+          "architecture": "avr",
+          "archiveFileName": "MarlinFirmware.zip",
+          "boards": [
+            { "name": "Arduino Mega 2560" },
+            { "name": "AT90-USB-64" },
+            { "name": "AT90-USB-128" }
+          ],
+          "category": "Contributed",
+          "checksum": "SHA-256:ccba77d65de031880551a9d4934ada87ebe35284439ab31762d6ff98f4d6899e",
+          "help": {
+            "online": "https://github.com/MarlinFirmware/Marlin/wiki"
+          },
+          "size": "1402356",
+          "toolsDependencies": [
+            {
+              "name": "avr-gcc",
+              "packager": "arduino",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "name": "avrdude",
+              "packager": "arduino",
+              "version": "6.0.1-arduino5"
+            }
+          ],
+          "url": "https://github.com/Wackerbarth/MarlinDev/archive/MarlinFirmware.zip"
+        }
+      ],
+      "tools": [],
+      "websiteURL": "https://github.com/Wackerbarth/MarlinDev"
+    }
+  ]
+}
