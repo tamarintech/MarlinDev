@@ -20,7 +20,7 @@
 */
 
 #include "stepper_indirection.h"
-#include "Configuration.h"
+#include "MarlinFirmware.h"
 
 #if ENABLED(HAVE_TMCDRIVER)
   #include <SPI.h>

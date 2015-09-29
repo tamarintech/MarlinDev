@@ -1,7 +1,7 @@
 #ifndef LANGUAGE_H
 #define LANGUAGE_H
 
-#include "Configuration.h"
+#include "MarlinFirmware.h"
 
 #define LANGUAGE_CONCAT(M)       #M
 #define GENERATE_LANGUAGE_INCLUDE(M)  LANGUAGE_CONCAT(language_##M.h)

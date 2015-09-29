@@ -1,4 +1,4 @@
-#include "Configuration.h"
+#include "MarlinFirmware.h"
 
 #if ENABLED(DIGIPOT_I2C)
 

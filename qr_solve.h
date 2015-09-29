@@ -1,4 +1,4 @@
-#include "Configuration.h"
+#include "MarlinFirmware.h"
 
 #if ENABLED(AUTO_BED_LEVELING_GRID)
 

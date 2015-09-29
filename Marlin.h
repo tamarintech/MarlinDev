@@ -23,7 +23,7 @@
 
 
 #include "fastio.h"
-#include "Configuration.h"
+#include "MarlinFirmware.h"
 #include "pins.h"
 
 #ifndef SANITYCHECK_H
