@@ -8,20 +8,26 @@ before_install:
   - git fetch origin --tags
   - mkdir ~/bin
 install:
-  # Install arduino 1.6.4
-  - wget http://downloads-02.arduino.cc/arduino-1.6.4-linux64.tar.xz
-  - tar Jxf arduino-1.6.4-linux64.tar.xz
-  - sudo mv arduino-1.6.4 /usr/local/share/arduino
+  # Install arduino 1.6.5
+  - wget http://downloads-02.arduino.cc/arduino-1.6.5-linux64.tar.xz
+  - tar Jxf arduino-1.6.5-linux64.tar.xz
+  - sudo mv arduino-1.6.5 /usr/local/share/arduino
   - ln -s /usr/local/share/arduino/arduino ~/bin/arduino
   # Our custom build commands
-  - mv LinuxAddons/bin/*  ~/bin/
+  - wget https://raw.githubusercontent.com/MarlinFirmware/Marlin/RC/LinuxAddons/bin/generate_version_header_for_marlin -q -O ~/bin/generate_version_header_for_marlin
+  - chmod +x ~/bin/*
   - ls -la ~/bin
   # install our platform
-  - cp -r ArduinoAddons/Arduino_1.6.x/hardware/* /usr/local/share/arduino/hardware
+  - cd
+  - git clone https://github.com/MarlinFirmware/MarlinDev.git
+  - cd MarlinDev
+  - git checkout IDE_1.6.5
+  - mv hardware/marlin /usr/local/share/arduino/hardware
   # copy libraries to arduino dir, as conditional includes do not work in .ino files
   - cp -r /usr/local/share/arduino/hardware/marlin/avr/libraries/* /usr/local/share/arduino/libraries/
-  - cp -r ArduinoAddons/Arduino_1.6.x/libraries/* /usr/local/share/arduino/libraries/
+  ### - cp -r ArduinoAddons/Arduino_1.6.x/libraries/* /usr/local/share/arduino/libraries/
   # add LiquidCrystal_I2C & LiquidTWI2 libraries
+  - cd $TRAVIS_BUILD_DIR
   - git clone https://github.com/kiyoshigawa/LiquidCrystal_I2C.git
   - mv LiquidCrystal_I2C/LiquidCrystal_I2C /usr/local/share/arduino/libraries/LiquidCrystal_I2C
   - git clone https://github.com/lincomatic/LiquidTWI2.git
@@ -31,6 +37,9 @@ install:
   - unzip master.zip
   - cd astyle-mirror-master/build/gcc/
   - make prefix=$HOME astyle install
+  - cd ../../..
+  - rm -rf astyle-mirror-master
+  - ln -s $TRAVIS_BUILD_DIR /usr/local/share/arduino/libraries/MarlinFirmware
 before_script:
   # arduino requires an X server even with command line
   # https://github.com/arduino/Arduino/issues/1981
@@ -38,169 +47,74 @@ before_script:
   # change back to home directory for compiling
   - cd $TRAVIS_BUILD_DIR
   # Check style
-  # ~/bin/astyle --recursive --options=.astylerc "Marlin/*.h" "Marlin/*.cpp"
+  - ~/bin/astyle --recursive --options=.astylerc -r "*.h" "*.cpp"
+  - pwd
+  - find . -type f | grep orig
 script:
   # Abort on style errors
   # if [ "0" != `find . -name "*.orig" | wc -l` ] ; then echo "Improperly styled source -- run astyle" ; exit -999; fi
   # Relaxed Travis check
   # if [ "0" != `find . -name "*.orig" | wc -l` ] ; then echo "Improperly styled source -- run astyle" ; fi
   # build default config
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
-  # backup configuration.h
-  - cp Marlin/Configuration.h Marlin/Configuration.h.backup
-  - cp Marlin/Configuration_adv.h Marlin/Configuration_adv.h.backup
-  - cp Marlin/pins_RAMPS_13.h Marlin/pins_RAMPS_13.h.backup
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_01.h" examples/MarlinFirmware/MarlinFirmware.ino
   # add sensor for bed
-  - sed -i 's/#define TEMP_SENSOR_BED 0/#define TEMP_SENSOR_BED 1/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_02.h" examples/MarlinFirmware/MarlinFirmware.ino
   # change extruder numbers from 1 to 2
-  - sed -i 's/#define MOTHERBOARD BOARD_RAMPS_13_EFB/#define MOTHERBOARD BOARD_RAMPS_13_EEB/g' Marlin/Configuration.h
-  - sed -i 's/#define EXTRUDERS 1/#define EXTRUDERS 2/g' Marlin/Configuration.h
-  - sed -i 's/#define TEMP_SENSOR_1 0/#define TEMP_SENSOR_1 1/g' Marlin/Configuration.h
-  #- cat Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
-  # change extruder numbers from 2 to 3, needs to be a board with 3 extruders defined in pins.h 
-  - sed -i 's/#define MOTHERBOARD BOARD_RAMPS_13_EEB/#define MOTHERBOARD BOARD_RUMBA/g' Marlin/Configuration.h
-  - sed -i 's/#define EXTRUDERS 2/#define EXTRUDERS 3/g' Marlin/Configuration.h
-  - sed -i 's/#define TEMP_SENSOR_2 0/#define TEMP_SENSOR_2 1/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
-  # enable PIDTEMPBED 
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define PIDTEMPBED/#define PIDTEMPBED/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_03.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # change extruder numbers from 2 to 3, needs to be a board with 3 extruders defined in pins.h
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_04.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # enable PIDTEMPBED
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_05.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable AUTO_BED_LEVELING
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define ENABLE_AUTO_BED_LEVELING/#define ENABLE_AUTO_BED_LEVELING/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_06.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable AUTO_BED_LEVELING with servos
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define ENABLE_AUTO_BED_LEVELING/#define ENABLE_AUTO_BED_LEVELING/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define NUM_SERVOS/#define NUM_SERVOS/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define Z_ENDSTOP_SERVO_NR/#define Z_ENDSTOP_SERVO_NR/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define SERVO_ENDSTOP_ANGLES/#define SERVO_ENDSTOP_ANGLES/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define DEACTIVATE_SERVOS_AFTER_MOVE/#define DEACTIVATE_SERVOS_AFTER_MOVE/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_07.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable EEPROM_SETTINGS & EEPROM_CHITCHAT
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define EEPROM_SETTINGS/#define EEPROM_SETTINGS/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define EEPROM_CHITCHAT/#define EEPROM_CHITCHAT/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_08.h" examples/MarlinFirmware/MarlinFirmware.ino
   ### LCDS ###
   # ULTIMAKERCONTROLLER
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define ULTIMAKERCONTROLLER/#define ULTIMAKERCONTROLLER/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_09.h" examples/MarlinFirmware/MarlinFirmware.ino
   # MAKRPANEL
   # Needs to use melzi and sanguino hardware
-  #- cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  #- sed -i 's/\/\/#define MAKRPANEL/#define MAKRPANEL/g' Marlin/Configuration.h
-  #- rm -rf .build/
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_10.h" examples/MarlinFirmware/MarlinFirmware.ino
   # REPRAP_DISCOUNT_SMART_CONTROLLER
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define REPRAP_DISCOUNT_SMART_CONTROLLER/#define REPRAP_DISCOUNT_SMART_CONTROLLER/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_11.h" examples/MarlinFirmware/MarlinFirmware.ino
   # G3D_PANE
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define G3D_PANEL/#define G3D_PANEL/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_12.h" examples/MarlinFirmware/MarlinFirmware.ino
   # REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER/#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
-  # REPRAPWORLD_KEYPAD 
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_13.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # REPRAPWORLD_KEYPAD
   # Cant find configuration details to get it to compile
-  #- cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  #- sed -i 's/\/\/#define ULTRA_LCD/#define ULTRA_LCD/g' Marlin/Configuration.h
-  #- sed -i 's/\/\/#define REPRAPWORLD_KEYPAD/#define REPRAPWORLD_KEYPAD/g' Marlin/Configuration.h
-  #- sed -i 's/\/\/#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0/#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0/g' Marlin/Configuration.h
-  #- rm -rf .build/
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_14.h" examples/MarlinFirmware/MarlinFirmware.ino
   # RA_CONTROL_PANEL
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define RA_CONTROL_PANEL/#define RA_CONTROL_PANEL/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_15.h" examples/MarlinFirmware/MarlinFirmware.ino
   ### I2C PANELS ###
   # LCD_I2C_SAINSMART_YWROBOT
-  # Failing at the moment needs different library 
-  #- cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  #- sed -i 's/\/\/#define LCD_I2C_SAINSMART_YWROBOT/#define LCD_I2C_SAINSMART_YWROBOT/g' Marlin/Configuration.h
-  #- rm -rf .build/
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  # Failing at the moment needs different library
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_16.h" examples/MarlinFirmware/MarlinFirmware.ino
   # LCD_I2C_PANELOLU2
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define LCD_I2C_PANELOLU2/#define LCD_I2C_PANELOLU2/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_17.h" examples/MarlinFirmware/MarlinFirmware.ino
   # LCD_I2C_VIKI
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define LCD_I2C_VIKI/#define LCD_I2C_VIKI/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_18.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable filament sensor
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define FILAMENT_SENSOR/#define FILAMENT_SENSOR/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_19.h" examples/MarlinFirmware/MarlinFirmware.ino
    # Enable filament sensor with LCD display
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define ULTIMAKERCONTROLLER/#define ULTIMAKERCONTROLLER/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define FILAMENT_SENSOR/#define FILAMENT_SENSOR/g' Marlin/Configuration.h
-  - sed -i 's/\/\/#define FILAMENT_LCD_DISPLAY/#define FILAMENT_LCD_DISPLAY/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_20.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable COREXY
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define COREXY/#define COREXY/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_21.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable COREXZ
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define COREXZ/#define COREXZ/g' Marlin/Configuration.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_22.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable Z_DUAL_STEPPER_DRIVERS, Z_DUAL_ENDSTOPS
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - sed -i 's/\/\/#define Z_DUAL_STEPPER_DRIVERS/#define Z_DUAL_STEPPER_DRIVERS/g' Marlin/Configuration_adv.h
-  - sed -i 's/\ \ \/\/\ \#define Z_DUAL_ENDSTOPS/#define Z_DUAL_ENDSTOPS/g' Marlin/Configuration_adv.h
-  - sed -i 's/#define X_MAX_PIN           2/#define X_MAX_PIN          -1/g' Marlin/pins_RAMPS_13.h
-  - sed -i 's/\ \ \ \ \#define Z2_MAX_PIN 36/#define Z2_MAX_PIN  2/g' Marlin/Configuration_adv.h
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
-  - cp Marlin/Configuration.h.backup Marlin/Configuration.h
-  - cp Marlin/Configuration_adv.h.backup Marlin/Configuration_adv.h
-  - cp Marlin/pins_RAMPS_13.h.backup Marlin/pins_RAMPS_13.h
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_23.h" examples/MarlinFirmware/MarlinFirmware.ino
   ######## Example Configurations ##############
   # Delta Config (generic)
-  - cp Marlin/example_configurations/delta/generic/Configuration* Marlin/
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/delta/generic/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Delta Config (Mini Kossel)
-  - cp Marlin/example_configurations/delta/kossel_mini/Configuration* Marlin/
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/delta/kossel_mini/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Makibox Config  need to check board type for Teensy++ 2.0
-  #- cp Marlin/example_configurations/makibox/Configuration* Marlin/
-  #- rm -rf .build/
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/makibox/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # SCARA Config
-  - cp Marlin/example_configurations/SCARA/Configuration* Marlin/
-  - rm -rf .build/
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/SCARA/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # tvrrug Config need to check board type for sanguino atmega644p
-  #- cp Marlin/example_configurations/tvrrug/Round2/Configuration* Marlin/
-  #- rm -rf .build/
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  Marlin/Marlin.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/tvrrug/Round2/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   ######## Board Types #############
