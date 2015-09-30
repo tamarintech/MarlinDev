@@ -1,14 +1,14 @@
-# How to install Marlin?
+# How to install Marlin Support?
 
 ## Via Arduino IDE Boards Manager
 
-* Add the URL to the Cosa package definition file to the Arduino IDE
+* Add the URL to the MarlinFirmware package definition file to the Arduino IDE
 Preferences>Additional Boards Manager URLs field.
-https://raw.githubusercontent.com/Wackerbarth/MarlinDev/platform/package_index.json
+https://raw.githubusercontent.com/Wackerbarth/MarlinDev/platform/package_marlinfirmware_index.json
 
 * Open the Arduino IDE Boards Manager in the Tools>Board menu.
 
-* Select Cosa and install.
+* Select Marlin and install.
 
 
 ## Via GIT
@@ -17,11 +17,11 @@ https://raw.githubusercontent.com/Wackerbarth/MarlinDev/platform/package_index.j
 cd <custom_path>/sketchbook
 mkdir hardware # Create the hardware folder if missing
 cd hardware
-git clone Wackerbarth/MarlinDev.git
+git clone http://github.com/Wackerbarth/MarlinDev.git
 ```
 
 Then you can update the library by using:
 
 ```shell
-git pull origin master
+git pull origin dev
 ```
