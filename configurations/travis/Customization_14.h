@@ -2,4 +2,4 @@
 #define ULTRA_LCD
 #define REPRAPWORLD_KEYPAD
 #define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0
-#include "configurations/deprecated_configurations/ramps/Configuration.h"
+#include "configurations/transitional_default_configurations/ramps/Configuration.h"

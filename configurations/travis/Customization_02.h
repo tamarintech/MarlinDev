@@ -1,2 +1,2 @@
 #define TEMP_SENSOR_BED 1
-#include "configurations/deprecated_configurations/ramps/Configuration.h"
+#include "configurations/transitional_default_configurations/ramps/Configuration.h"
