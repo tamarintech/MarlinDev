@@ -2,8 +2,8 @@
 <img align="top" width=175 src="Documentation/Logo/Marlin%20Logo%20GitHub.png" />
  Documentation has moved to the [wiki](https://github.com/MarlinFirmware/Marlin/wiki).
 
-## This is the library version of the code which produces the Marlin Firmware
-In order to build the firmware, you will also need a build environment. The official build environment is based on recent version of the [Arduino IDE 1.6.5](https://github.com/MarlinFirmware/MarlinDev/tree/IDE_1.6.5) and [later](https://github.com/MarlinFirmware/MarlinDev/tree/IDE_1.6.6). Start by following instructions found in those branches and then return here to add the actual source code for the firmware.
+## This is the source code which produces the Marlin Firmware
+In order to build the firmware, you will also need a build environment. The official build environment is based on the beta version of the [Arduino IDE 1.6.6 (Hourly Builds)](https://www.arduino.cc/Main/Software).
 
 ## Development Only
 
@@ -24,20 +24,24 @@ Since the 1.1.0-RC2, the following changes have been made:
    The procedure that you use to customize your configuration has changed. Please see <sketchbook>/libraries/marlin/examples/MarlinFirmware/FirmwareCustomization.h for more information.
 
 3) Compilation Support --
-   There are separate branches in this repository to support building using the Arduino IDE 1.6.5 and the (recent hourly build) Arduino IDE 1.6.6  At the present time, this support is incomplete.
+   Although they lack some of the build features provided, the code can also be compiled from the Arduino IDE 1.6.5 and by other methods.
    If you need them, you can retrieve earlier support routines from the [RC branch](https://github.com/MarlinFirmware/Marlin/tree/RC) of the [Marlin Release Repository](https://github.com/MarlinFirmware/Marlin).
 
-The [dev branch](https://github.com/MarlinFirmware/MarlinDev/tree/dev) contains the most up-to-date development Marlin code. Please remember that this code is for developers only and may well contain non-working situations.
+## Branches
+### Development
+The [dev branch](https://github.com/MarlinFirmware/MarlinDev/tree/dev) contains the most up-to-date development Marlin code. Please remember that this code is for developers only and may well contain non-working situations. (Experimental) After downloading and installing the [Arduino IDE 1.6.6 (Hourly Builds)](https://www.arduino.cc/Main/Software), visit [Marlin Build Support](https://github.com/Wackerbarth/MarlinDev/tree/MarlinFirmware) for instructions on how the load the Marlin Platform support. Install this branch as the library mentioned in (1) above.
 
-## Testing
+### Testing
 The [RC branch](https://github.com/MarlinFirmware/Marlin/tree/RC) contains the latest Marlin 1.1 pre-release candidate.
 
-## Released Code
+### Released Code
 For the latest tagged version of Marlin (currently 1.0.2 – January 2015) you should switch to the [Release Repository](https://github.com/MarlinFirmware/Marlin). Please see that repository for additional information.
 
-## Current Status: Reorganization of Source Files
+## Current Status
 
-Testing of the 1.1 Release Candidate is under way. Marlin development needs to proceed with caution while the structural changes being implemented here are completed.
+Testing of the 1.1 Release Candidate is under way.
+
+The support structure for the new development work has recently been put in place. It is likely that there will be some modifications made to it as we gain experience using it.
 
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/2224/badge.svg)](https://scan.coverity.com/projects/2224)
 [![Travis Build Status](https://travis-ci.org/MarlinFirmware/MarlinDev.svg)](https://travis-ci.org/MarlinFirmware/MarlinDev)
