@@ -244,3 +244,101 @@ SAVMkI_HID.build.variant=at90usb
 SAVMkI_HID.build.vid=0x16D0
 SAVMkI_HID.build.pid=0x076B
 SAVMkI_HID.build.extra_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid}
+
+
+########################################
+## Sanguino
+########################################
+sanguino.name=Sanguino
+
+sanguino.upload.tool=avrdude
+### Verify the rest of these
+sanguino.upload.protocol=stk500
+sanguino.upload.maximum_size=131072
+sanguino.upload.speed=57600
+
+sanguino.bootloader.tool=avrdude
+sanguino.bootloader.low_fuses=0xD6
+sanguino.bootloader.high_fuses=0xDA
+sanguino.bootloader.extended_fuses=0xFD
+sanguino.bootloader.unlock_bits=0x3F
+sanguino.bootloader.lock_bits=0x0F
+
+sanguino.build.mcu=atmega1284p
+sanguino.build.f_cpu=16000000L
+sanguino.build.board=AVR_SANGUINO
+sanguino.build.core=arduino
+sanguino.build.variant=sanguino
+
+sanguino.menu.cpu.atmega644=ATmega644P
+sanguino.menu.cpu.atmega644.upload.maximum_size=63488
+sanguino.menu.cpu.atmega644.bootloader.low_fuses=0xFF
+sanguino.menu.cpu.atmega644.bootloader.high_fuses=0x9A
+sanguino.menu.cpu.atmega644.bootloader.extended_fuses=0xFF
+sanguino.menu.cpu.atmega644.bootloader.file=ATmegaBOOT_168_atmega644p.hex
+sanguino.menu.cpu.atmega644.build.mcu=atmega644p
+
+sanguino.menu.cpu.atmega12848m=ATmega1284p 8MHz
+sanguino.menu.cpu.atmega12848m.upload.speed=19200
+sanguino.menu.cpu.atmega12848m.bootloader.file=ATmegaBOOT_168_atmega1284p_8m.hex
+sanguino.menu.cpu.atmega12848m.build.f_cpu=8000000L
+
+sanguino.menu.cpu.atmega1284=ATmega1284p 16MHz
+sanguino.menu.cpu.atmega1284.bootloader.file=ATmegaBOOT_168_atmega1284p.hex
+
+sanguino.menu.cpu.atmega1284m=ATmega1284p 20MHz
+sanguino.menu.cpu.atmega1284m.bootloader.file=ATmegaBOOT_168_atmega1284p.hex
+sanguino.menu.cpu.atmega1284m.build.f_cpu=20000000L
+
+
+### The mega had this, do we need it?
+### sanguino.upload.maximum_data_size=8192
+
+### Revise these if they don't make sense for the sanguino
+sanguino.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_01.h
+sanguino.menu.marlin.travis01=Default Configuration
+sanguino.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_02.h
+sanguino.menu.marlin.travis02=Bed Sensor
+sanguino.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_03.h
+sanguino.menu.marlin.travis03=2 Extruders
+sanguino.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_04.h
+sanguino.menu.marlin.travis04=3 Extruders
+sanguino.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_05.h
+sanguino.menu.marlin.travis05=Bed PID
+sanguino.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_06.h
+sanguino.menu.marlin.travis06=Bed Leveling
+sanguino.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_07.h
+sanguino.menu.marlin.travis07=Bed Leveling with servos
+sanguino.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_08.h
+sanguino.menu.marlin.travis08=EEPROM Config Store
+sanguino.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_09.h
+sanguino.menu.marlin.travis09=Ultimaker Controller
+sanguino.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_11.h
+sanguino.menu.marlin.travis11=Reprap Discount Controller
+sanguino.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_12.h
+sanguino.menu.marlin.travis12=G3D_PANE
+sanguino.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_13.h
+sanguino.menu.marlin.travis13=Reprap Full Graphic
+sanguino.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_15.h
+sanguino.menu.marlin.travis15=RA Control Panel
+sanguino.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_17.h
+sanguino.menu.marlin.travis17=OLU2 Control Panel
+sanguino.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_18.h
+sanguino.menu.marlin.travis18=VIKI Display
+sanguino.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_19.h
+sanguino.menu.marlin.travis19=Filament Sensor
+sanguino.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_20.h
+sanguino.menu.marlin.travis20=Filament Sensor w/ display
+sanguino.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_21.h
+sanguino.menu.marlin.travis21=CORE XY
+sanguino.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_22.h
+sanguino.menu.marlin.travis22=CORE XZ
+sanguino.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_23.h
+sanguino.menu.marlin.travis23=Dual Z
+sanguino.menu.marlin.travis24.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/generic/Configuration.h
+sanguino.menu.marlin.travis24=DELTA
+sanguino.menu.marlin.travis25.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/kossel_mini/Configuration.h
+sanguino.menu.marlin.travis25=Mini Kossel
+sanguino.menu.marlin.travis26.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/SCARA/Configuration.h
+sanguino.menu.marlin.travis26=SCARA
+
