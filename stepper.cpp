@@ -435,7 +435,7 @@ inline void update_endstops() {
               COPY_BIT(current_endstop_bits, Z_MAX, Z2_MAX);
             #endif
 
-            byte z_test = (TEST_ENDSTOP(Z_MIN) << 0) + (TEST_ENDSTOP(Z2_MIN) << 1); // bit 0 for Z, bit 1 for Z2
+            byte z_test = (TEST_ENDSTOP(Z_MAX) << 0) + (TEST_ENDSTOP(Z2_MAX) << 1); // bit 0 for Z, bit 1 for Z2
 
             if (z_test && current_block->steps[Z_AXIS] > 0) {  // t_test = Z_MAX || Z2_MAX
               endstops_trigsteps[Z_AXIS] = count_position[Z_AXIS];
