@@ -1355,10 +1355,6 @@ static void setup_for_endstop_move() {
     #if ENABLED(DEBUG_LEVELING_FEATURE)
       if (marlin_debug_flags & DEBUG_LEVELING) {
         print_xyz("do_blocking_move_to", x, y, z);
-        SERIAL_ECHOPAIR("Raise Z (after) by ", (float)Z_RAISE_AFTER_PROBING);
-        SERIAL_EOL;
-        SERIAL_ECHO("> SERVO_ENDSTOPS > raise_z_after_probing()");
-        SERIAL_EOL;
       }
     #endif
 
