@@ -28,7 +28,7 @@
 #define X_ENABLE_PIN       38
 #define X_MIN_PIN           3
 #ifndef X_MAX_PIN
-  #define X_MAX_PIN           2
+  #define X_MAX_PIN         2
 #endif
 
 #define Y_STEP_PIN         60
