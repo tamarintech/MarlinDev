@@ -123,6 +123,8 @@
 #define MSG_ENDSTOP_ABORT                   "Endstop abort"
 #define MSG_END_HOUR                        "horas"
 #define MSG_END_MINUTE                      "minutos"
+#define MSG_PRINT_COUNTER                   "Conteo de Impresiones"
+#define MSG_PRINTS                          "No. de Impresiones"
 
 #if ENABLED(DELTA_CALIBRATION_MENU)
   #define MSG_DELTA_CALIBRATE               "Calibracion Delta"

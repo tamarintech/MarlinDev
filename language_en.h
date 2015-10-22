@@ -462,5 +462,11 @@
 #ifndef MSG_DELTA_CALIBRATE_CENTER
   #define MSG_DELTA_CALIBRATE_CENTER          "Calibrate Center"
 #endif
+#ifndef MSG_PRINT_COUNTER
+  #define MSG_PRINT_COUNTER                   "Print Counter"
+#endif
+#ifndef MSG_PRINTS
+  #define MSG_PRINTS                          "No. of Prints"
+#endif
 
 #endif // LANGUAGE_EN_H

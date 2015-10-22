@@ -14,7 +14,7 @@
  *
  */
 
-#define EEPROM_VERSION "V21"
+#define EEPROM_VERSION "V22"
 
 /**
  * V19 EEPROM Layout:
@@ -100,6 +100,7 @@
   #include "mesh_bed_leveling.h"
 #endif
 
+
 void _EEPROM_writeData(int &pos, uint8_t* value, uint8_t size) {
   uint8_t c;
   while (size--) {
@@ -129,7 +130,7 @@ void _EEPROM_readData(int &pos, uint8_t* value, uint8_t size) {
 
 #define DUMMY_PID_VALUE 3000.0f
 
-#define EEPROM_OFFSET 100
+#define EEPROM_OFFSET 150
 
 #if ENABLED(EEPROM_SETTINGS)
 
@@ -892,3 +893,63 @@ void Config_PrintSettings(bool forReplay) {
 }
 
 #endif // !DISABLE_M503
+
+#if ENABLED(PRINT_COUNTER)
+
+uint32_t tnp=0;
+#define count_offset 100
+
+/**
+ * Gets the current Print Count- M505
+ */
+void showtotalprints() {
+  int i = count_offset;
+  EEPROM_READ_VAR(i,tnp);
+  SERIAL_ECHO_START;
+  SERIAL_ECHOPGM("Total of Prints: ");
+  SERIAL_ECHOLN(tnp);
+  }
+
+/**
+ * Increase the print counter by 1 (Indicates another Print has Finished) - M505 F
+ */  
+void totalprints() {
+  int i = count_offset;
+  tnp=increasetnp();
+  EEPROM_WRITE_VAR(i,tnp);
+  SERIAL_ECHO_START;
+  SERIAL_ECHOPGM("Total of Prints: ");
+  SERIAL_ECHOLN(tnp);
+}
+
+int increasetnp() {
+  int i = count_offset;
+  int itnp;
+  EEPROM_READ_VAR(i,itnp);
+  itnp=itnp+1;
+  return itnp;
+}
+
+/**
+ * Clears the Print Count - M505 C
+ */
+void resettnp() {
+  int i = count_offset;
+  int zero=0;
+  EEPROM_WRITE_VAR(i,zero);
+  SERIAL_ECHOLNPGM("The print counter has been resetted");
+  //SERIAL_ECHOPGM("Total of Prints: ");
+  //SERIAL_ECHOLN(tnp);
+}
+
+/**
+ * Print counter LCD implementation
+ */
+int return_tnp() {
+  int i = count_offset;
+  int Rtnp;
+  EEPROM_READ_VAR(i,Rtnp);
+  return Rtnp;
+}
+
+#endif // PRINT_COUNTER

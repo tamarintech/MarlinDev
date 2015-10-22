@@ -19,4 +19,12 @@ void Config_ResetDefault();
   FORCE_INLINE void Config_RetrieveSettings() { Config_ResetDefault(); Config_PrintSettings(); }
 #endif
 
+#if ENABLED(PRINT_COUNTER)
+  void showtotalprints();
+  void totalprints();
+  int increasetnp();
+  void resettnp();
+  int return_tnp();
+#endif
+
 #endif //CONFIGURATION_STORE_H
