@@ -101,10 +101,10 @@ script:
   - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/delta/generic/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Delta Config (Mini Kossel)
   - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/delta/kossel_mini/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
-  # Makibox Config  need to check board type for Teensy++ 2.0
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/makibox/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # SCARA Config
   - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/SCARA/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
-  # tvrrug Config need to check board type for sanguino atmega644p
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/tvrrug/Round2/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   ######## Board Types #############
+  # Makibox Config  need to check board type for Teensy++ 2.0
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:BrainwavePro  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/makibox/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # tvrrug Config need to check board type for sanguino atmega644p
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:sanguino  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/tvrrug/Round2/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
