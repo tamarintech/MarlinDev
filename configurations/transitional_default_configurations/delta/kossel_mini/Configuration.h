@@ -1,6 +1,3 @@
-#ifndef CONFIGURATION_H
-#define CONFIGURATION_H
-
 #include "boards.h"
 #include "macros.h"
 
@@ -21,20 +18,6 @@ Here are some standard links for getting your machine calibrated:
 // This configuration file contains the basic settings.
 // Advanced settings can be found in Configuration_adv.h
 // BASIC SETTINGS: select your board type, temperature sensor type, axis scaling, and endstop configuration
-
-//===========================================================================
-//============================= DELTA Printer ===============================
-//===========================================================================
-// For a Delta printer replace the configuration files with the files in the
-// example_configurations/delta directory.
-//
-
-//===========================================================================
-//============================= SCARA Printer ===============================
-//===========================================================================
-// For a Scara printer replace the configuration files with the files in the
-// example_configurations/SCARA directory.
-//
 
 // @section info
 
@@ -213,16 +196,6 @@ Here are some standard links for getting your machine calibrated:
   #define  DEFAULT_Ki 1.08
   #define  DEFAULT_Kd 114
 
-  // MakerGear
-  //#define  DEFAULT_Kp 7.0
-  //#define  DEFAULT_Ki 0.1
-  //#define  DEFAULT_Kd 12
-
-  // Mendel Parts V9 on 12V
-  //#define  DEFAULT_Kp 63.0
-  //#define  DEFAULT_Ki 2.25
-  //#define  DEFAULT_Kd 440
-
 #endif // PIDTEMP
 
 //===========================================================================
@@ -259,13 +232,6 @@ Here are some standard links for getting your machine calibrated:
   #define  DEFAULT_bedKi .023
   #define  DEFAULT_bedKd 305.4
 
-  //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from pidautotune
-  //#define  DEFAULT_bedKp 97.1
-  //#define  DEFAULT_bedKi 1.41
-  //#define  DEFAULT_bedKd 1675.16
-
-  // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -305,12 +271,6 @@ Here are some standard links for getting your machine calibrated:
 
 // @section machine
 
-// Uncomment this option to enable CoreXY kinematics
-//#define COREXY
-
-// Uncomment this option to enable CoreXZ kinematics
-//#define COREXZ
-
 //===========================================================================
 //============================== Delta Settings =============================
 //===========================================================================
@@ -346,35 +306,10 @@ Here are some standard links for getting your machine calibrated:
 
 #endif
 
-// Enable this option for Toshiba steppers
-//#define CONFIG_STEPPERS_TOSHIBA
-
 // @section homing
 
 // coarse Endstop Settings
 #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
-
-#if DISABLED(ENDSTOPPULLUPS)
-  // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
-  //#define ENDSTOPPULLUP_XMAX
-  //#define ENDSTOPPULLUP_YMAX
-  //#define ENDSTOPPULLUP_ZMAX
-  //#define ENDSTOPPULLUP_XMIN
-  //#define ENDSTOPPULLUP_YMIN
-  //#define ENDSTOPPULLUP_ZMIN
-  //#define ENDSTOPPULLUP_ZMIN_PROBE
-#endif
-
-// Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-//#define DISABLE_MAX_ENDSTOPS
-//#define DISABLE_MIN_ENDSTOPS // Deltas only use min endstops for probing.
 
 // If you want to enable the Z probe pin, but disable its use, uncomment the line below.
 // This only affects a Z probe endstop if you have separate Z min endstop as well and have
@@ -557,29 +492,6 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
   #if ENABLED(Z_PROBE_ALLEN_KEY)
     // 2 or 3 sets of coordinates for deploying and retracting the spring loaded touch probe on G29,
     // if servo actuated touch probe is not defined. Uncomment as appropriate for your printer/probe.
-
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_X 30.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_Y DELTA_PRINTABLE_RADIUS
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE HOMING_FEEDRATE_XYZ
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_X 0.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_Y DELTA_PRINTABLE_RADIUS
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE (HOMING_FEEDRATE_XYZ/10)
-
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_X -64.0 // Move the probe into position
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_Y 56.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_Z 23.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE HOMING_FEEDRATE_XYZ
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_X -64.0 // Push it down
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_Y 56.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_Z 3.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE (HOMING_FEEDRATE_XYZ/10)
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_X -64.0 // Move it up to clear
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_Y 56.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_Z 50.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE HOMING_FEEDRATE_XYZ
-
     // Kossel Mini
     #define Z_PROBE_ALLEN_KEY_DEPLOY_1_X 30.0
     #define Z_PROBE_ALLEN_KEY_DEPLOY_1_Y DELTA_PRINTABLE_RADIUS
@@ -607,32 +519,6 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
     #define Z_PROBE_ALLEN_KEY_STOW_3_Z  (Z_PROBE_ALLEN_KEY_STOW_1_Z+Z_PROBE_ALLEN_KEY_STOW_DEPTH)
     #define Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE (XY_TRAVEL_SPEED/2)
 
-    // Kossel Pro
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_X -105.00 // Move left but not quite so far that we'll bump the belt
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_Y 0.00
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_1_FEEDRATE HOMING_FEEDRATE_XYZ
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_X -110.00 // Move outward to position deploy pin to the left of the arm
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_Y -125.00
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_2_FEEDRATE HOMING_FEEDRATE_XYZ
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_3_X 45.00 // Move right to trigger deploy pin
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_3_Y -125.00
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_3_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_DEPLOY_3_FEEDRATE (HOMING_FEEDRATE_XYZ/2)
-
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_X 36.00 // Line up with bed retaining clip
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_Y -122.00
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_Z 75.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_1_FEEDRATE HOMING_FEEDRATE_XYZ
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_X 36.00 // move down to retract probe
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_Y -122.00
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_Z 25.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_2_FEEDRATE (HOMING_FEEDRATE_XYZ/2)
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_X 0.0  // return to 0,0,100
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_Y 0.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_Z 100.0
-    //#define Z_PROBE_ALLEN_KEY_STOW_3_FEEDRATE HOMING_FEEDRATE_XYZ
   #endif
 
   // If you have enabled the bed auto leveling and are using the same Z probe for Z homing,
@@ -982,7 +868,4 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 //When using an LCD, uncomment the line below to display the Filament sensor data on the last line instead of status.  Status will appear for 5 sec.
 //#define FILAMENT_LCD_DISPLAY
 
-#include "configurations/transitional_default_configurations/delta/kossel_mini/Configuration_adv.h"
-#include "thermistortables.h"
-
-#endif //CONFIGURATION_H
+#include "configurations/transitional_default_configurations/delta/generic/Configuration.h"
