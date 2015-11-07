@@ -56,121 +56,65 @@ script:
   # Relaxed Travis check
   # if [ "0" != `find . -name "*.orig" | wc -l` ] ; then echo "Improperly styled source -- run astyle" ; fi
   # build default config
-  - cp examples/MarlinFirmware/FirmwareCustomization.h examples/MarlinFirmware/FirmwareCustomization.h.bak
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_01.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_01.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/RAMPS_13_EFB_default.h" examples/MarlinFirmware/MarlinFirmware.ino
   # add sensor for bed
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_02.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_02.h" examples/MarlinFirmware/MarlinFirmware.ino
-  # change extruder numbers from 1 to 2
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_03.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_03.h" examples/MarlinFirmware/MarlinFirmware.ino
-  # change extruder numbers from 2 to 3, needs to be a board with 3 extruders defined in pins.h
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_04.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_04.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/TEMP_SENSOR_BED.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # change number of extruders to 2
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/dual_extruder.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # change number of extruders to 3, needs to be a board with 3 extruders defined in pins.h
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/triple_extruder.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable PIDTEMPBED
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_05.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_05.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/PIDTEMPBED.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable AUTO_BED_LEVELING
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_06.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_06.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/AUTO_BED_LEVELING_FEATURE.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable AUTO_BED_LEVELING with servos
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_07.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_07.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/SERVOS.h" examples/MarlinFirmware/MarlinFirmware.ino
   # enable EEPROM_SETTINGS & EEPROM_CHITCHAT
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_08.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_08.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/EEPROM.h" examples/MarlinFirmware/MarlinFirmware.ino
   ### LCDS ###
   # ULTIMAKERCONTROLLER
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_09.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_09.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/ULTIMAKERCONTROLLER.h" examples/MarlinFirmware/MarlinFirmware.ino
   # MAKRPANEL
   # Needs to use melzi and sanguino hardware
-  #- cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  #- sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_10.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_10.h" examples/MarlinFirmware/MarlinFirmware.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/MAKRPANEL.h" examples/MarlinFirmware/MarlinFirmware.ino
   # REPRAP_DISCOUNT_SMART_CONTROLLER
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_11.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_11.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/REPRAP_DISCOUNT_SMART_CONTROLLER.h" examples/MarlinFirmware/MarlinFirmware.ino
   # G3D_PANE
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_12.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_12.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/G3D_PANEL.h" examples/MarlinFirmware/MarlinFirmware.ino
   # REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_13.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_13.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER.h" examples/MarlinFirmware/MarlinFirmware.ino
   # REPRAPWORLD_KEYPAD
   # Cant find configuration details to get it to compile
-  #- cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  #- sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_14.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_14.h" examples/MarlinFirmware/MarlinFirmware.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/ULTRA_LCD.h" examples/MarlinFirmware/MarlinFirmware.ino
   # RA_CONTROL_PANEL
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_15.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_15.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/RA_CONTROL_PANEL.h" examples/MarlinFirmware/MarlinFirmware.ino
   ### I2C PANELS ###
   # LCD_I2C_SAINSMART_YWROBOT
   # Failing at the moment needs different library
-  #- cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  #- sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_16.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_16.h" examples/MarlinFirmware/MarlinFirmware.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/LCD_I2C_SAINSMART_YWROBOT.h" examples/MarlinFirmware/MarlinFirmware.ino
   # LCD_I2C_PANELOLU2
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_17.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_17.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/LCD_I2C_PANELOLU2.h" examples/MarlinFirmware/MarlinFirmware.ino
   # LCD_I2C_VIKI
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_18.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_18.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/LCD_I2C_VIKI.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable filament sensor
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_19.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_19.h" examples/MarlinFirmware/MarlinFirmware.ino
-   # Enable filament sensor with LCD display
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_20.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_20.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/FILAMENT_SENSOR.h" examples/MarlinFirmware/MarlinFirmware.ino
+  # Enable filament sensor with LCD display
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/FILAMENT_LCD_DISPLAY.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable COREXY
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_21.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_21.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/COREXY.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable COREXZ
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_22.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_22.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/COREXZ.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Enable Z_DUAL_STEPPER_DRIVERS, Z_DUAL_ENDSTOPS
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/travis\/Customization_23.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/travis/Customization_23.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/travis/Z_DUAL_ENDSTOPS.h" examples/MarlinFirmware/MarlinFirmware.ino
   ######## Example Configurations ##############
   # Delta Config (generic)
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/deprecated_configurations\/delta\/generic\/Configuration.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/delta/generic/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/delta/generic/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Delta Config (Mini Kossel)
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/deprecated_configurations\/delta\/kossel_mini\/Configuration.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/delta/kossel_mini/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/delta/kossel_mini/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # Makibox Config  need to check board type for Teensy++ 2.0
-  #- cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  #- sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/deprecated_configurations\/makibox\/Configuration.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/makibox/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/makibox/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # SCARA Config
-  - cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  - sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/deprecated_configurations\/SCARA\/Configuration.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/SCARA/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  - DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/SCARA/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   # tvrrug Config need to check board type for sanguino atmega644p
-  #- cp examples/MarlinFirmware/FirmwareCustomization.h.bak examples/MarlinFirmware/FirmwareCustomization.h
-  #- sed -i 's/\/\/TRAVISPLACEHOLDER/#include \"configurations\/deprecated_configurations\/tvrrug\/Round2\/Configuration.h\"/g' examples/MarlinFirmware/FirmwareCustomization.h
-  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.extra_flags=-DCUSTOMIZATION="configurations/deprecated_configurations/tvrrug/Round2/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
+  #- DISPLAY=:1.0 ~/bin/arduino --verify --board marlin:avr:mega  --pref build.unique_id_flags=-DCONFIGURATION_FILE="configurations/deprecated_configurations/tvrrug/Round2/Configuration.h" examples/MarlinFirmware/MarlinFirmware.ino
   ######## Board Types #############
