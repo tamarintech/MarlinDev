@@ -8,10 +8,10 @@ before_install:
   - git fetch origin --tags
   - mkdir ~/bin
 install:
-  # Install arduino 1.6.5
-  - wget http://downloads-02.arduino.cc/arduino-1.6.5-linux64.tar.xz
-  - tar Jxf arduino-1.6.5-linux64.tar.xz
-  - sudo mv arduino-1.6.5 /usr/local/share/arduino
+  # Install arduino 1.6.6
+  - wget http://downloads-02.arduino.cc/arduino-1.6.6-linux64.tar.xz
+  - tar Jxf arduino-1.6.6-linux64.tar.xz
+  - sudo mv arduino-1.6.6 /usr/local/share/arduino
   - ln -s /usr/local/share/arduino/arduino ~/bin/arduino
   # Our custom build commands
   - wget https://raw.githubusercontent.com/MarlinFirmware/Marlin/RC/LinuxAddons/bin/generate_version_header_for_marlin -q -O ~/bin/generate_version_header_for_marlin
@@ -21,17 +21,8 @@ install:
   - cd
   - git clone https://github.com/MarlinFirmware/MarlinDev.git
   - cd MarlinDev
-  - git checkout IDE_1.6.5
+  - git checkout IDE_1.6.6
   - mv hardware/marlin /usr/local/share/arduino/hardware
-  # copy libraries to arduino dir, as conditional includes do not work in .ino files
-  - cp -r /usr/local/share/arduino/hardware/marlin/avr/libraries/* /usr/local/share/arduino/libraries/
-  ### - cp -r ArduinoAddons/Arduino_1.6.x/libraries/* /usr/local/share/arduino/libraries/
-  # add LiquidCrystal_I2C & LiquidTWI2 libraries
-  - cd $TRAVIS_BUILD_DIR
-  - git clone https://github.com/kiyoshigawa/LiquidCrystal_I2C.git
-  - mv LiquidCrystal_I2C/LiquidCrystal_I2C /usr/local/share/arduino/libraries/LiquidCrystal_I2C
-  - git clone https://github.com/lincomatic/LiquidTWI2.git
-  - mv LiquidTWI2 /usr/local/share/arduino/libraries/LiquidTWI2
   # Install astyle
   - wget https://github.com/timonwong/astyle-mirror/archive/master.zip
   - unzip master.zip
@@ -48,7 +39,6 @@ before_script:
   - cd $TRAVIS_BUILD_DIR
   # Check style
   - ~/bin/astyle --recursive --options=.astylerc -r "*.h" "*.cpp"
-  - pwd
   - find . -type f | grep orig
 script:
   # Abort on style errors
