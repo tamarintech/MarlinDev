@@ -67,45 +67,45 @@ mega.menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
 mega.menu.cpu.atmega1280.build.mcu=atmega1280
 mega.menu.cpu.atmega1280.build.board=AVR_MEGA
 
-mega.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_01.h
+mega.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/RAMPS_13_EFB_default.h
 mega.menu.marlin.travis01=Default Configuration
-mega.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_02.h
+mega.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/TEMP_SENSOR_BED.h
 mega.menu.marlin.travis02=Bed Sensor
-mega.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_03.h
+mega.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/dual_extruder.h
 mega.menu.marlin.travis03=2 Extruders
-mega.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_04.h
+mega.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/triple_extruder.h
 mega.menu.marlin.travis04=3 Extruders
-mega.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_05.h
+mega.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/PIDTEMPBED.h
 mega.menu.marlin.travis05=Bed PID
-mega.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_06.h
+mega.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/AUTO_BED_LEVELING_FEATURE.h
 mega.menu.marlin.travis06=Bed Leveling
-mega.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_07.h
+mega.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/SERVOS.h
 mega.menu.marlin.travis07=Bed Leveling with servos
-mega.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_08.h
+mega.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/EEPROM.h
 mega.menu.marlin.travis08=EEPROM Config Store
-mega.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_09.h
+mega.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/ULTIMAKERCONTROLLER.h
 mega.menu.marlin.travis09=Ultimaker Controller
-mega.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_11.h
+mega.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/REPRAP_DISCOUNT_SMART_CONTROLLER.h
 mega.menu.marlin.travis11=Reprap Discount Controller
-mega.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_12.h
+mega.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/G3D_PANEL.h
 mega.menu.marlin.travis12=G3D_PANE
-mega.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_13.h
+mega.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER.h
 mega.menu.marlin.travis13=Reprap Full Graphic
-mega.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_15.h
+mega.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/RA_CONTROL_PANEL.h
 mega.menu.marlin.travis15=RA Control Panel
-mega.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_17.h
+mega.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/LCD_I2C_PANELOLU2.h
 mega.menu.marlin.travis17=OLU2 Control Panel
-mega.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_18.h
+mega.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/LCD_I2C_VIKI.h
 mega.menu.marlin.travis18=VIKI Display
-mega.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_19.h
+mega.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/FILAMENT_SENSOR.h
 mega.menu.marlin.travis19=Filament Sensor
-mega.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_20.h
+mega.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/FILAMENT_LCD_DISPLAY.h
 mega.menu.marlin.travis20=Filament Sensor w/ display
-mega.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_21.h
+mega.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/COREXY.h
 mega.menu.marlin.travis21=CORE XY
-mega.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_22.h
+mega.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/COREXZ.h
 mega.menu.marlin.travis22=CORE XZ
-mega.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_23.h
+mega.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Z_DUAL_ENDSTOPS.h
 mega.menu.marlin.travis23=Dual Z
 mega.menu.marlin.travis24.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/generic/Configuration.h
 mega.menu.marlin.travis24=DELTA
@@ -295,45 +295,45 @@ sanguino.menu.cpu.atmega1284m.build.f_cpu=20000000L
 ### sanguino.upload.maximum_data_size=8192
 
 ### Revise these if they don't make sense for the sanguino
-sanguino.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_01.h
+sanguino.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/RAMPS_13_EFB_default.h
 sanguino.menu.marlin.travis01=Default Configuration
-sanguino.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_02.h
+sanguino.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/TEMP_SENSOR_BED.h
 sanguino.menu.marlin.travis02=Bed Sensor
-sanguino.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_03.h
+sanguino.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/dual_extruder.h
 sanguino.menu.marlin.travis03=2 Extruders
-sanguino.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_04.h
+sanguino.menu.marlin.travis04.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/triple_extruder.h
 sanguino.menu.marlin.travis04=3 Extruders
-sanguino.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_05.h
+sanguino.menu.marlin.travis05.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/PIDTEMPBED.h
 sanguino.menu.marlin.travis05=Bed PID
-sanguino.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_06.h
+sanguino.menu.marlin.travis06.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/AUTO_BED_LEVELING_FEATURE.h
 sanguino.menu.marlin.travis06=Bed Leveling
-sanguino.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_07.h
+sanguino.menu.marlin.travis07.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/SERVOS.h
 sanguino.menu.marlin.travis07=Bed Leveling with servos
-sanguino.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_08.h
+sanguino.menu.marlin.travis08.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/EEPROM.h
 sanguino.menu.marlin.travis08=EEPROM Config Store
-sanguino.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_09.h
+sanguino.menu.marlin.travis09.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/ULTIMAKERCONTROLLER.h
 sanguino.menu.marlin.travis09=Ultimaker Controller
-sanguino.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_11.h
+sanguino.menu.marlin.travis11.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/REPRAP_DISCOUNT_SMART_CONTROLLER.h
 sanguino.menu.marlin.travis11=Reprap Discount Controller
-sanguino.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_12.h
+sanguino.menu.marlin.travis12.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/G3D_PANEL.h
 sanguino.menu.marlin.travis12=G3D_PANE
-sanguino.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_13.h
+sanguino.menu.marlin.travis13.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER.h
 sanguino.menu.marlin.travis13=Reprap Full Graphic
-sanguino.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_15.h
+sanguino.menu.marlin.travis15.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/RA_CONTROL_PANEL.h
 sanguino.menu.marlin.travis15=RA Control Panel
-sanguino.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_17.h
+sanguino.menu.marlin.travis17.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/LCD_I2C_PANELOLU2.h
 sanguino.menu.marlin.travis17=OLU2 Control Panel
-sanguino.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_18.h
+sanguino.menu.marlin.travis18.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/LCD_I2C_VIKI.h
 sanguino.menu.marlin.travis18=VIKI Display
-sanguino.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_19.h
+sanguino.menu.marlin.travis19.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/FILAMENT_SENSOR.h
 sanguino.menu.marlin.travis19=Filament Sensor
-sanguino.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_20.h
+sanguino.menu.marlin.travis20.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/FILAMENT_LCD_DISPLAY.h
 sanguino.menu.marlin.travis20=Filament Sensor w/ display
-sanguino.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_21.h
+sanguino.menu.marlin.travis21.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/COREXY.h
 sanguino.menu.marlin.travis21=CORE XY
-sanguino.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_22.h
+sanguino.menu.marlin.travis22.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/COREXZ.h
 sanguino.menu.marlin.travis22=CORE XZ
-sanguino.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Customization_23.h
+sanguino.menu.marlin.travis23.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/Z_DUAL_ENDSTOPS.h
 sanguino.menu.marlin.travis23=Dual Z
 sanguino.menu.marlin.travis24.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/delta/generic/Configuration.h
 sanguino.menu.marlin.travis24=DELTA
@@ -341,4 +341,3 @@ sanguino.menu.marlin.travis25.build.unique_id_flags=-DCONFIGURATION_FILE=configu
 sanguino.menu.marlin.travis25=Mini Kossel
 sanguino.menu.marlin.travis26.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/deprecated_configurations/SCARA/Configuration.h
 sanguino.menu.marlin.travis26=SCARA
-

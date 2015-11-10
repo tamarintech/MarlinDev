@@ -4,7 +4,7 @@
 
 * Add the URL to the MarlinFirmware package definition file to the Arduino IDE
 Preferences>Additional Boards Manager URLs field.
-https://raw.githubusercontent.com/Wackerbarth/MarlinDev/platform/package_marlinfirmware_index.json
+https://raw.githubusercontent.com/MarlinFirmware/MarlinDev/platform/package_marlinfirmware_index.json
 
 * Open the Arduino IDE Boards Manager in the Tools>Board menu.
 
@@ -17,7 +17,7 @@ https://raw.githubusercontent.com/Wackerbarth/MarlinDev/platform/package_marlinf
 cd <custom_path>/sketchbook
 mkdir hardware # Create the hardware folder if missing
 cd hardware
-git clone http://github.com/Wackerbarth/MarlinDev.git
+git clone http://github.com/MarlinFirmware/MarlinDev.git
 ```
 
 Then you can update the library by using:
