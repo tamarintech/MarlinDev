@@ -2,9 +2,9 @@
 <img align="top" width=175 src="Documentation/Logo/Marlin%20Logo%20GitHub.png" />
  Documentation has moved to [marlinfirmware.org](http://www.marlinfirmware.org).
 
-## Arduino IDE 1.6.5 Support Branch
+## Arduino IDE 1.6.6 Support Branch
 
-The code in this branch provides the build infrastructure to build and install the Marlin Firmware using the Arduino IDE toolset.
+The code in this branch provides the build infrastructure to build and install the Marlin Firmware using the [Arduino 1.6.6 IDE](https://www.arduino.cc/en/Main/Software) toolset.
 Other methods of building and installing may be supported in other branches.
 In each case, you will also need to separately checkout the source code for the firmware itself.
 

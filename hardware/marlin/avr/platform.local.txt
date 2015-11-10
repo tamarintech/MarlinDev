@@ -1,7 +1,10 @@
-compiler.cpp.extra_flags=-DUSE_AUTOMATIC_VERSIONING
+compiler.cpp.extra_flags=-DUSE_AUTOMATIC_VERSIONING -Wno-unused-parameter -Wno-unused-function -Wno-type-limits
 compiler.cpp.extra_flags.windows=
 build.custom_bin.path.macosx=/usr/local/bin/
 build.custom_bin.path.linux=
-recipe.hooks.prebuild0.pattern={build.custom_bin.path}generate_version_header_for_marlin "{build.source.path}" "{build.path}/_Version.h"
+recipe.hooks.prebuild0.pattern=mkdir -p "{build.path}/sketch/"
+recipe.hooks.prebuild1.pattern={build.custom_bin.path}generate_version_header_for_marlin "{build.source.path}" "{build.path}/sketch/_Version.h"
 # Please help -- We need an implementation on Windows
 recipe.hooks.prebuild0.pattern.windows=
+recipe.hooks.prebuild1.pattern.windows=
+compiler.c.extra_flags=-DUSE_AUTOMATIC_VERSIONING -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration
