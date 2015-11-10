@@ -10,7 +10,7 @@
       "platforms": [
         {
           "name": "Marlin",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "architecture": "avr",
           "archiveFileName": "MarlinFirmware.zip",
           "boards": [
@@ -19,7 +19,7 @@
             { "name": "AT90-USB-128" }
           ],
           "category": "Contributed",
-          "checksum": "SHA-256:ccba77d65de031880551a9d4934ada87ebe35284439ab31762d6ff98f4d6899e",
+          "checksum": "SHA-256:6374590acac68be0b78318728a8d3f7cd8a1c53eb0b0a78bb2a0eb3c31a3f684",
           "help": {
             "online": "https://github.com/MarlinFirmware/Marlin/wiki"
           },
@@ -36,11 +36,11 @@
               "version": "6.0.1-arduino5"
             }
           ],
-          "url": "https://github.com/Wackerbarth/MarlinDev/archive/MarlinFirmware.zip"
+          "url": "https://github.com/MarlinFirmware/MarlinDev/archive/MarlinFirmware.zip"
         }
       ],
       "tools": [],
-      "websiteURL": "https://github.com/Wackerbarth/MarlinDev"
+      "websiteURL": "https://github.com/MarlinFirmware/MarlinDev"
     }
   ]
 }
