@@ -1,6 +1,6 @@
 # Marlin 3D Printer Firmware
 <img align="top" width=175 src="Documentation/Logo/Marlin%20Logo%20GitHub.png" />
- Documentation has moved to [marlinfirmware.org](http://www.marlinfirmware.org).
+Additional documentation can be found in [our wiki](https://github.com/MarlinFirmware/Marlin/wiki/Main-Page).
 
 ## Arduino IDE 1.6.6 Support Branch
 
