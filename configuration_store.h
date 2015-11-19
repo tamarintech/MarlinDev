@@ -22,7 +22,8 @@ void Config_ResetDefault();
 #if ENABLED(PRINT_COUNTER)
   void showtotalprints();
   void totalprints();
-  int increasetnp();
+  void totalprints_success();
+  int increasetnp(int offset);
   void resettnp();
   int return_tnp();
 #endif

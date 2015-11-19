@@ -5264,13 +5264,35 @@ inline void gcode_M503() {
   Config_PrintSettings(code_seen('S') && code_value() == 0);
 }
 
+/**
+ * M504: Used at Start and End of gcode file for various operations
+ */
+inline void gcode_M504() {
+  // Place M504 S at the beginning of gcode file
+  if (code_seen('S')){
+
+    // Keep funtions to be executed when print starts here
+    #if ENABLED(PRINT_COUNTER)
+      totalprints(); // Increase the Print-Started counter by 1
+    #endif
+  }
+
+  // Place M504 E at the END of gcode file
+  if (code_seen('E')) {
+
+    //Finallly
+    #if ENABLED(PRINT_COUNTER)
+      totalprints_success(); // Increase the Print-Success counter by 1
+    #endif
+  }
+}
+
 #if ENABLED(PRINT_COUNTER)
 /**
  * M505: Printer Counter
  */
 inline void gcode_M505() {
-  if (code_seen('G')) showtotalprints(); // Gets the current Print Count- M505 G
-  if (code_seen('F')) totalprints(); // Increase the print counter by 1 - M505 F
+  if (code_seen('S')) showtotalprints(); // Gets the current Print Count- M505 G
   if (code_seen('C')) resettnp(); // Clears the Print Count - M505 C
 }
 #endif
@@ -6192,6 +6214,9 @@ void process_next_command() {
         break;
       case 503: // M503 print settings currently in memory
         gcode_M503();
+        break;
+      case 504: // M504 Print Start & End Helpers
+        gcode_M504();
         break;
 
       #if ENABLED(PRINT_COUNTER)

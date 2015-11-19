@@ -898,6 +898,8 @@ void Config_PrintSettings(bool forReplay) {
 
 uint32_t tnp=0;
 #define count_offset 100
+// This should be calculated for better optimization!
+#define success_count_offset 110
 
 /**
  * Gets the current Print Count- M505
@@ -912,18 +914,27 @@ void showtotalprints() {
 
 /**
  * Increase the print counter by 1 (Indicates another Print has Finished) - M505 F
- */  
+ */
 void totalprints() {
   int i = count_offset;
-  tnp=increasetnp();
+  tnp=increasetnp(i);
   EEPROM_WRITE_VAR(i,tnp);
   SERIAL_ECHO_START;
-  SERIAL_ECHOPGM("Total of Prints: ");
+  SERIAL_ECHOPGM("Print Started! Counter incremented");
   SERIAL_ECHOLN(tnp);
 }
 
-int increasetnp() {
-  int i = count_offset;
+void totalprints_success(){
+  int i = success_count_offset;
+  tnp=increasetnp(i);
+  EEPROM_WRITE_VAR(i,tnp);
+  SERIAL_ECHO_START;
+  SERIAL_ECHOPGM("Total Succesful Prints: ");
+  SERIAL_ECHOLN(tnp);
+}
+
+int increasetnp(offset) {
+  int i = offset;
   int itnp;
   EEPROM_READ_VAR(i,itnp);
   itnp=itnp+1;
@@ -937,7 +948,9 @@ void resettnp() {
   int i = count_offset;
   int zero=0;
   EEPROM_WRITE_VAR(i,zero);
-  SERIAL_ECHOLNPGM("The print counter has been resetted");
+  i = success_count_offset;
+  EEPROM_WRITE_VAR(i,zero);
+  SERIAL_ECHOLNPGM("Print counters has been resetted");
   //SERIAL_ECHOPGM("Total of Prints: ");
   //SERIAL_ECHOLN(tnp);
 }
@@ -947,9 +960,13 @@ void resettnp() {
  */
 int return_tnp() {
   int i = count_offset;
-  int Rtnp;
+  int Rtnp; // has total number of prints started
   EEPROM_READ_VAR(i,Rtnp);
-  return Rtnp;
+  int i = success_count_offset;
+  int Stnp;
+  EEPROM_READ_VAR(i,Stnp); // has total prints completed
+  int success_prints  = Rtnp - Stnp ;
+  return success_prints;
 }
 
 #endif // PRINT_COUNTER
