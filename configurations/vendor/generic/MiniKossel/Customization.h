@@ -22,8 +22,6 @@
 #define  DEFAULT_Ki 1.08
 #define  DEFAULT_Kd 114
 
-#endif // PIDTEMP
-
 #define DELTA_SEGMENTS_PER_SECOND 200
 
 // Center-to-center distance of the holes in the diagonal push rods.
