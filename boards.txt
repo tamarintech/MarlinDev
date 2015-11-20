@@ -67,8 +67,10 @@ mega.menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
 mega.menu.cpu.atmega1280.build.mcu=atmega1280
 mega.menu.cpu.atmega1280.build.board=AVR_MEGA
 
+mega.menu.marlin.default.build.unique_id_flags=
+mega.menu.marlin.default=Default Configuration
 mega.menu.marlin.travis01.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/RAMPS_13_EFB_default.h
-mega.menu.marlin.travis01=Default Configuration
+mega.menu.marlin.travis01=Simple Ramps 1.3
 mega.menu.marlin.travis02.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/TEMP_SENSOR_BED.h
 mega.menu.marlin.travis02=Bed Sensor
 mega.menu.marlin.travis03.build.unique_id_flags=-DCONFIGURATION_FILE=configurations/travis/dual_extruder.h
