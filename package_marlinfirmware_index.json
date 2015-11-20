@@ -4,13 +4,13 @@
       "name": "Marlin",
       "email": "rkw@dataplex.net",
       "help": {
-        "online": "https://github.com/MarlinFirmware/Marlin/wiki"
+        "online": "https://github.com/MarlinFirmware/MarlinDev/wiki"
       },
       "maintainer": "Richard Wackerbarth",
       "platforms": [
         {
           "name": "Marlin",
-          "version": "1.0.1",
+          "version": "1.0.2",
           "architecture": "avr",
           "archiveFileName": "MarlinFirmware.zip",
           "boards": [
@@ -19,11 +19,11 @@
             { "name": "AT90-USB-128" }
           ],
           "category": "Contributed",
-          "checksum": "SHA-256:6374590acac68be0b78318728a8d3f7cd8a1c53eb0b0a78bb2a0eb3c31a3f684",
+          "checksum": "SHA-256:862a7bd8b27c798fbff06fdfc5e4dda897421a403cc0bf5f39e3fbe35510d75b",
           "help": {
-            "online": "https://github.com/MarlinFirmware/Marlin/wiki"
+            "online": "https://github.com/MarlinFirmware/MarlinDev/wiki"
           },
-          "size": "1402356",
+          "size": "1445353",
           "toolsDependencies": [
             {
               "name": "avr-gcc",
