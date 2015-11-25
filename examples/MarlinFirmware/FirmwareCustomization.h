@@ -79,6 +79,8 @@
 
 #endif
 
+#include "configurations/issues/FAST_PWM_FAN.h"
+
 // Sanity check
 #ifndef MARLIN
   #error Compilation using cores other than those provided in this distribution are unsupported
