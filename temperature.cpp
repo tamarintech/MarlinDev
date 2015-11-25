@@ -798,6 +798,7 @@ static float analog2tempBed(int raw) {
     return ((raw * ((5.0 * 100.0) / 1024.0) / OVERSAMPLENR) * TEMP_SENSOR_AD595_GAIN) + TEMP_SENSOR_AD595_OFFSET;
 
   #else
+
     UNUSED(raw);
     return 0;
 
