@@ -337,8 +337,7 @@ void Config_RetrieveSettings() {
       mbl.active = dummy_uint8;
       if (mesh_num_x == MESH_NUM_X_POINTS && mesh_num_y == MESH_NUM_Y_POINTS) {
         EEPROM_READ_VAR(i, mbl.z_values);
-      }
-      else {
+      } else {
         mbl.reset();
         for (int q = 0; q < mesh_num_x * mesh_num_y; q++) EEPROM_READ_VAR(i, dummy);
       }

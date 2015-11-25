@@ -165,9 +165,9 @@ char lcd_print(char c) {
     u8g.print(c);
     lcd_setFont(currentfont);
     return 1;
-  }
-  else
+  } else {
     return charset_mapper(c);
+  }
 }
 
 char lcd_print(char* str) {
