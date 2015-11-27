@@ -79,6 +79,8 @@
 
 #endif
 
+#include "configurations/issues/TestAbortOnEndstop.h"
+
 // Sanity check
 #ifndef MARLIN
   #error Compilation using cores other than those provided in this distribution are unsupported
