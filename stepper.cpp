@@ -292,7 +292,7 @@ void checkHitEndstops() {
           card.sdprinting = false;
           card.closefile();
         #endif
-        axis_known_position[3] = { false }; // not homed anymore
+        for (int i=0; i<3; i++) axis_known_position[i] = false; // not homed anymore
         quickStop(); // kill the planner buffer
         Stop();      // restart by M999
       }
