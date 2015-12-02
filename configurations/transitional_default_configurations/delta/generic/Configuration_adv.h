@@ -32,8 +32,12 @@
 #endif
 
 #if ENABLED(THERMAL_PROTECTION_BED)
-  #define THERMAL_PROTECTION_BED_PERIOD 20    // Seconds
-  #define THERMAL_PROTECTION_BED_HYSTERESIS 2 // Degrees Celsius
+  #ifndef THERMAL_PROTECTION_BED_PERIOD
+    #define THERMAL_PROTECTION_BED_PERIOD 20    // Seconds
+  #endif
+  #ifndef THERMAL_PROTECTION_BED_HYSTERESIS
+    #define THERMAL_PROTECTION_BED_HYSTERESIS 2 // Degrees Celsius
+  #endif
 #endif
 
 /**
@@ -240,7 +244,9 @@
 #define INVERT_E_STEP_PIN false
 
 // Default stepper release if idle. Set to 0 to deactivate.
-#define DEFAULT_STEPPER_DEACTIVE_TIME 60
+#ifndef DEFAULT_STEPPER_DEACTIVE_TIME
+  #define DEFAULT_STEPPER_DEACTIVE_TIME 60
+#endif
 
 #define DEFAULT_MINIMUMFEEDRATE       0.0     // minimum feedrate
 #define DEFAULT_MINTRAVELFEEDRATE     0.0
@@ -446,13 +452,19 @@ const unsigned int dropsegments = 5; //everything with less than this number of 
 //#define FWRETRACT  //ONLY PARTIALLY TESTED
 #if ENABLED(FWRETRACT)
   #define MIN_RETRACT 0.1                //minimum extruded mm to accept a automatic gcode retraction attempt
-  #define RETRACT_LENGTH 3               //default retract length (positive mm)
+  #ifndef RETRACT_LENGTH
+    #define RETRACT_LENGTH 3             //default retract length (positive mm)
+  #endif
   #define RETRACT_LENGTH_SWAP 13         //default swap retract length (positive mm), for extruder change
-  #define RETRACT_FEEDRATE 45            //default feedrate for retracting (mm/s)
+  #ifndef RETRACT_FEEDRATE
+    #define RETRACT_FEEDRATE 45          //default feedrate for retracting (mm/s)
+  #endif
   #define RETRACT_ZLIFT 0                //default retract Z-lift
   #define RETRACT_RECOVER_LENGTH 0       //default additional recover length (mm, added to retract length when recovering)
   #define RETRACT_RECOVER_LENGTH_SWAP 0  //default additional swap recover length (mm, added to retract length when recovering from extruder change)
-  #define RETRACT_RECOVER_FEEDRATE 8     //default feedrate for recovering from retraction (mm/s)
+  #ifndef RETRACT_RECOVER_FEEDRATE
+    #define RETRACT_RECOVER_FEEDRATE 8   //default feedrate for recovering from retraction (mm/s)
+  #endif
 #endif
 
 // Add support for experimental filament exchange support M600; requires display
