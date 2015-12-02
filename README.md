@@ -58,7 +58,6 @@ __Google Hangout:__ <a href="https://plus.google.com/hangouts/_/gxn3wrea5gdhoo22
 The current Marlin dev team consists of:
 
  - Scott Lahteine [@thinkyhead] - English
- - Andreas Hardtung [@AnHardt] - Deutsch, English
  - [@Wurstnase] - Deutsch, English
  - F. Malpartida [@fmalpartida] - English, Spanish
  - [@CONSULitAS] - Deutsch, English
