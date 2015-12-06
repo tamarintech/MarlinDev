@@ -5,36 +5,10 @@
 #define INCLUDE_BY_CLASS_AND_ID(C,I)  AS_QUOTED_STRING(configurations/C/I/Customization.h)
 #define INCLUDE_BY_PATH(P)            AS_QUOTED_STRING(P)
 
-#include "FirmwareCustomization.h"
+#include "boards.h"
+#include "macros.h"
 
-#ifndef CONFIGURATION_H
-  #ifdef CONFIGURATION_FILE
-    #include INCLUDE_BY_PATH(CONFIGURATION_FILE)
-  #endif
-#endif
-
-#ifndef CONFIGURATION_H
-  #ifdef SPECIFIC_PRINTER_ID
-    #include INCLUDE_BY_CLASS_AND_ID(custom,SPECIFIC_PRINTER_ID)
-  #endif
-#endif
-
-#ifndef CONFIGURATION_H
-  #ifdef VENDOR
-    #define CUSTOM_CLASS vendor
-    #ifdef MODEL
-      #define CUSTOM_ID VENDOR/MODEL
-    #else
-      #define CUSTOM_ID VENDOR
-    #endif
-  #else
-    #define CUSTOM_CLASS vendor
-    #define CUSTOM_ID generic/RepRap
-  #endif
-
-  #include INCLUDE_BY_CLASS_AND_ID(CUSTOM_CLASS,CUSTOM_ID)
-
-#endif
+#include "IncludeUserCustomization.h"
 
 // Sanity Check
 #ifndef CONFIGURATION_H
