@@ -17,8 +17,6 @@
     or, you could define it here *
  */
 
-//TRAVISPLACEHOLDER
-
 #if 0
 
   // You can obtain a unique id by visiting https://www.uuidgenerator.net/version4
@@ -29,7 +27,7 @@
 
 /*
  *
- *  Printer specifiction
+ *  Printer specification
  *
 
     Whether specified here, or in a unique specification file, the following printer description should be followed.
