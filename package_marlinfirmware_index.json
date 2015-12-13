@@ -10,6 +10,96 @@
       "platforms": [
         {
           "name": "Marlin",
+          "version": "1.6.7",
+          "architecture": "avr",
+          "archiveFileName": "MarlinPlatform-1.6.7.zip",
+          "boards": [
+            { "name": "Arduino Mega 2560" },
+            { "name": "AT90-USB-64" },
+            { "name": "AT90-USB-128" }
+          ],
+          "category": "Contributed",
+          "checksum": "SHA-256:f07ebfc8d879e792432903ea3d744a79571f21491b01eecf5c9cff8b2e6b5085",
+          "help": {
+            "online": "https://github.com/MarlinFirmware/MarlinDev/wiki"
+          },
+          "size": "1836804",
+          "toolsDependencies": [
+            {
+              "name": "avr-gcc",
+              "packager": "arduino",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "name": "avrdude",
+              "packager": "arduino",
+              "version": "6.0.1-arduino5"
+            }
+          ],
+          "url": "https://github.com/MarlinFirmware/MarlinDev/archive/MarlinPlatform-1.6.7.zip"
+        },
+        {
+          "name": "Marlin",
+          "version": "1.6.6",
+          "architecture": "avr",
+          "archiveFileName": "MarlinPlatform-1.6.6.zip",
+          "boards": [
+            { "name": "Arduino Mega 2560" },
+            { "name": "AT90-USB-64" },
+            { "name": "AT90-USB-128" }
+          ],
+          "category": "Contributed",
+          "checksum": "SHA-256:4a9042de021559b0774f793671b1e64756b2be26a553d477540890939b40e1f2",
+          "help": {
+            "online": "https://github.com/MarlinFirmware/MarlinDev/wiki"
+          },
+          "size": "1836804",
+          "toolsDependencies": [
+            {
+              "name": "avr-gcc",
+              "packager": "arduino",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "name": "avrdude",
+              "packager": "arduino",
+              "version": "6.0.1-arduino5"
+            }
+          ],
+          "url": "https://github.com/MarlinFirmware/MarlinDev/archive/MarlinPlatform-1.6.6.zip"
+       },
+       {
+          "name": "Marlin",
+          "version": "1.6.6-eclipse",
+          "architecture": "avr",
+          "archiveFileName": "MarlinPlatform-1.0.6.zip",
+          "boards": [
+            { "name": "Arduino Mega 2560" },
+            { "name": "AT90-USB-64" },
+            { "name": "AT90-USB-128" }
+          ],
+          "category": "Contributed",
+          "checksum": "SHA-256:e7e759ff953f2ef7a3537cd531934e8a29f48fc33e27aea7fac08e8c15ba096b",
+          "help": {
+            "online": "https://github.com/MarlinFirmware/MarlinDev/wiki"
+          },
+          "size": "1836804",
+          "toolsDependencies": [
+            {
+              "name": "avr-gcc",
+              "packager": "arduino",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "name": "avrdude",
+              "packager": "arduino",
+              "version": "6.0.1-arduino5"
+            }
+          ],
+          "url": "https://github.com/MarlinFirmware/MarlinDev/archive/MarlinPlatform-1.0.6.zip"
+        },
+        {
+          "name": "Marlin",
           "version": "1.0.5",
           "architecture": "avr",
           "archiveFileName": "MarlinPlatform-1.0.5.zip",
