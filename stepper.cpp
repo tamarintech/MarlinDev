@@ -89,10 +89,9 @@ static volatile char endstop_hit_bits = 0; // use X_MIN, Y_MIN, Z_MIN and Z_MIN_
 
 #if PIN_EXISTS(MOTOR_CURRENT_PWM_XY)
   #ifndef PWM_MOTOR_CURRENT
-    int motor_current_setting[3] = DEFAULT_PWM_MOTOR_CURRENT;
-  #elif
-    int motor_current_setting[3] = PWM_MOTOR_CURRENT;
+    #define PWM_MOTOR_CURRENT DEFAULT_PWM_MOTOR_CURRENT
   #endif
+  int motor_current_setting[3] = PWM_MOTOR_CURRENT;
 #endif
 
 static bool check_endstops = true;
